@@ -1,0 +1,16 @@
+FOLDER LAYOUT (same as before)
+  index.html               applicant page
+  applications/index.html  staff dashboard
+  config.js, supabase.sql
+
+STEPS
+1. Discord Developer Portal > your app > Bot > Reset Token > copy it.
+   (No intents needed. Do NOT enable anything.)
+   OAuth2 > URL Generator > tick "bot", no permissions > open the link and add the bot to the server.
+2. Supabase > SQL Editor: run supabase.sql (whole file).
+3. Open set-bot-token.sql, paste your token, run it in the SQL Editor. DON'T commit it to GitHub.
+4. Upload index.html, applications/index.html, config.js to GitHub. Hard refresh (Ctrl+F5) the dashboard.
+
+NOTE: supabase.sql contains the owner login code 'macstaff-7x4kq'. If your repo is public, keep
+supabase.sql out of it (or change the code in the is_master function).
+Anyone not in the server will still show "Not recorded" - Discord has no join date for them.
