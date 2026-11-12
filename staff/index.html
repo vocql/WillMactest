@@ -1,0 +1,848 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Will Mac | Staff Dashboard</title>
+<meta name="theme-color" content="#14092a">
+<link rel="icon" href="https://images.guns.lol/637041cec591a6ab27615f0e2db44d08f3ce0c55/p6IK2p.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#ff4fb8;--pink2:#ff8fd4;--violet:#8b5cf6;--bg:#14092a;--card:rgba(22,10,44,.78);--border:rgba(255,79,184,.28);--text:#f7eefc;--muted:#b9a8d6;--ok:#3ddc97;--bad:#ff6b8b}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{font-family:'Outfit',system-ui,sans-serif;color:var(--text);background:var(--bg) center/cover fixed no-repeat;line-height:1.5}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 50% -5%,rgba(255,79,184,.26),transparent 55%),radial-gradient(ellipse at 90% 100%,rgba(139,92,246,.22),transparent 50%),linear-gradient(rgba(20,9,42,.66),rgba(20,9,42,.9))}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;border:1px solid var(--border);background:rgba(30,16,56,.85);border-radius:10px;padding:8px 14px;font-weight:500;transition:.15s}
+button:hover:not(:disabled){border-color:var(--pink)}
+button:disabled{opacity:.5;cursor:default}
+a{color:inherit}
+a.btn{display:inline-block;border:1px solid var(--border);background:rgba(30,16,56,.85);border-radius:10px;padding:8px 14px;font-weight:500;text-decoration:none;transition:.15s}
+a.btn:hover{border-color:var(--pink)}
+:focus-visible{outline:2px solid var(--pink2);outline-offset:2px}
+[hidden]{display:none!important}
+
+/* login */
+.loginWrap{position:relative;z-index:1;height:100vh;height:100dvh;display:grid;place-items:center;padding:20px}
+.login{width:100%;max-width:380px;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:30px 28px;text-align:center;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 16px 44px rgba(0,0,0,.45)}
+.login .logo{width:64px;height:64px;margin-bottom:12px}
+.login h2{font-family:'Syne',sans-serif;font-size:1.5rem;margin-bottom:4px}
+.login p{color:var(--muted);font-size:.9rem;margin-bottom:18px}
+.login input{width:100%;background:rgba(10,4,24,.75);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:12px 14px;outline:none;margin-bottom:10px;text-align:center;font-size:1rem}
+.login input:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(255,79,184,.2)}
+.login .go{width:100%;border:0;border-radius:999px;padding:11px;font-weight:600;color:#2a0a22;background:linear-gradient(90deg,var(--pink2),var(--pink));box-shadow:0 6px 22px rgba(255,79,184,.3)}
+.login .err{color:var(--bad);font-size:.86rem;min-height:1.3em;margin-bottom:8px}
+.login.denied h2{color:var(--bad)}.login.denied .alt{display:none}.login .alt{margin-top:14px;text-align:left}.login .alt summary{cursor:pointer;color:var(--muted);font-size:.8rem;text-align:center;margin-bottom:10px}.login .go.dc{background:#5865f2;color:#fff;box-shadow:0 6px 22px rgba(88,101,242,.35)}.login .go:disabled{opacity:.6;cursor:wait}
+.login .back{display:block;margin-top:14px;font-size:.8rem;color:var(--muted)}
+
+/* dashboard */
+.shell{position:relative;z-index:1;height:100vh;height:100dvh;max-width:1300px;margin:0 auto;padding:14px 18px;display:flex;flex-direction:column;gap:12px}
+.bar{flex:none;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--pink);box-shadow:0 0 24px rgba(255,79,184,.5)}
+.eyebrow{display:block;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pink2);font-weight:600}
+h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.15rem,2.4vw,1.7rem);line-height:1.1}
+h1 span{color:var(--pink)}
+.sp{flex:1}
+.live{font-size:.78rem;color:var(--muted)}
+.live i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ok);margin-right:6px;box-shadow:0 0 8px var(--ok)}
+
+.stats{flex:none;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:10px 14px;backdrop-filter:blur(12px)}
+.stat b{display:block;font-family:'Syne',sans-serif;font-size:1.5rem;line-height:1.1}
+.stat span{font-size:.76rem;color:var(--muted)}
+
+.tools{flex:none;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.tools input[type=search]{flex:1;min-width:160px;background:rgba(10,4,24,.75);border:1px solid var(--border);border-radius:10px;padding:9px 12px;outline:none}
+.tools input:focus{border-color:var(--pink)}
+.tools select{background:rgba(10,4,24,.85);border:1px solid var(--border);border-radius:10px;padding:9px 10px}
+
+.split{flex:1;min-height:0;display:grid;grid-template-columns:minmax(260px,380px) 1fr;gap:14px}
+.list,.detail{min-height:0;overflow:auto;background:var(--card);border:1px solid var(--border);border-radius:16px;backdrop-filter:blur(12px)}
+.list{padding:8px}
+.item{display:block;width:100%;text-align:left;border:1px solid transparent;background:none;border-radius:12px;padding:10px 12px;margin-bottom:4px}
+.item:hover{background:rgba(255,255,255,.04);border-color:var(--border)}
+.item.sel{background:rgba(255,79,184,.12);border-color:var(--pink)}
+.item .r1{display:flex;align-items:center;gap:8px}
+.item .nm{font-weight:600;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.item .dot{width:8px;height:8px;border-radius:50%;background:var(--pink);box-shadow:0 0 8px var(--pink);flex:none}
+.item .tm{font-size:.76rem;color:var(--muted);flex:none}
+.item .tag{display:inline-block;margin-right:6px;padding:0 7px;border-radius:999px;font-size:.68rem;font-weight:600;color:var(--pink2);border:1px solid var(--border)}
+.tag.st-approved{color:var(--ok);border-color:var(--ok)}
+.prog{margin:4px 0 14px;padding:14px;border:1px solid var(--border);border-radius:14px;background:rgba(10,4,24,.5);display:grid;gap:10px}
+.prog h3,.hist h3{font-family:'Syne',sans-serif;font-size:.95rem}
+.prog .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.prog select,.prog input[type=text],.prog textarea{background:rgba(10,4,24,.85);border:1px solid var(--border);border-radius:10px;padding:8px 10px;outline:none;font:inherit;color:inherit}
+.prog input[type=text]{flex:1;min-width:140px}
+.prog textarea{width:100%;min-height:58px;resize:vertical}
+.prog input:focus,.prog textarea:focus,.prog select:focus{border-color:var(--pink)}
+.pbar{margin:2px 0 14px}
+.pbar .ph{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:8px;font-size:1rem}
+.pbar .ph b{font-weight:600}.pbar .ph span{font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;color:var(--ok)}
+.pbar.bad .ph span{color:var(--bad)}
+.pbar .bar{height:14px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}
+.pbar .fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#1fae75,var(--ok));box-shadow:0 0 12px rgba(61,220,151,.45)}
+.pbar.bad .fill{background:linear-gradient(90deg,#d6405f,var(--bad))}
+.prog .save{border:0;color:#2a0a22;background:linear-gradient(90deg,var(--pink2),var(--pink));border-radius:999px;padding:9px 22px;font-weight:600;box-shadow:0 6px 18px rgba(255,79,184,.28)}
+.prog .save:disabled{opacity:.5}
+.prog .right{margin-left:auto}
+.statusline{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.statusline .tag{margin:0;padding:2px 10px;font-size:.78rem}
+.hist{margin:0 0 14px}
+.hrow{padding:8px 0;border-top:1px solid rgba(255,255,255,.08);display:flex;gap:4px 10px;flex-wrap:wrap;align-items:center}
+.hrow .tag{margin:0}
+.hnote{flex-basis:100%;font-size:.86rem;color:#eadcf7;white-space:pre-wrap;overflow-wrap:anywhere}
+.mng{flex:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px;padding:12px;border:1px solid var(--border);border-radius:14px;background:rgba(22,10,44,.76)}
+.mng[hidden]{display:none}
+.mrow{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(10,4,24,.5)}
+.mrow .nm{flex:1;font-weight:600}.mrow small{display:block;font-weight:400;color:var(--muted);font-size:.72rem}
+.pic{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:#fff;background:rgba(255,79,184,.16);border:1px solid var(--pink);flex:none}
+.pic svg,.pic img{width:16px;height:16px;object-fit:contain}
+.tg{flex:none;border:0;border-radius:999px;padding:6px 14px;font-weight:600;font-size:.78rem;cursor:pointer;color:#06281a;background:var(--ok)}
+.tg.off{color:#2a0612;background:var(--bad)}.tg:disabled{opacity:.5;cursor:not-allowed}
+.item .sn{font-size:.84rem;color:var(--muted);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.detail{padding:20px 24px}
+.dh h2{font-family:'Syne',sans-serif;font-size:1.4rem;line-height:1.2;overflow-wrap:anywhere}
+.dmeta{color:var(--muted);font-size:.86rem;margin:2px 0 12px}
+.acts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.qas{display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
+.qa.wide{grid-column:1/-1}
+.qa{padding:12px 0;border-top:1px solid rgba(255,255,255,.08)}
+.qa dt{font-size:.8rem;color:var(--pink2);font-weight:600;margin-bottom:3px}
+.qa dd{white-space:pre-wrap;overflow-wrap:anywhere;max-width:75ch}
+.back{display:none}
+.empty{display:grid;place-items:center;text-align:center;color:var(--muted);padding:40px 20px;height:100%}
+.empty b{display:block;color:var(--text);font-family:'Syne',sans-serif;font-size:1.1rem;margin-bottom:6px}
+.empty code{background:rgba(255,255,255,.08);padding:1px 6px;border-radius:6px;font-size:.85em}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(30,16,56,.97);border:1px solid var(--border);padding:10px 18px;border-radius:10px;z-index:40;font-size:.9rem}
+
+/* review popup */
+.modal{position:fixed;inset:0;z-index:30;display:grid;place-items:center;padding:16px;background:rgba(8,3,20,.7);backdrop-filter:blur(4px)}
+.modal .box{width:100%;max-width:520px;max-height:85vh;max-height:85dvh;display:flex;flex-direction:column;gap:10px;border:1px solid var(--border);border-radius:18px;padding:18px;background:rgba(22,10,44,.97)}
+.modal .mh{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.modal h3{font-family:'Syne',sans-serif;font-size:1.2rem}
+.rtools{display:flex;gap:8px}
+.rtools input{flex:1;min-width:0;background:rgba(10,4,24,.75);border:1px solid var(--border);border-radius:10px;padding:10px 12px;outline:none}
+.rtools input:focus{border-color:var(--pink)}
+.rtools select{background:rgba(10,4,24,.85);border:1px solid var(--border);border-radius:10px;padding:9px 10px}
+.selall{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--muted);cursor:pointer}
+.modal input[type=checkbox]{width:18px;height:18px;accent-color:var(--pink);flex:none;cursor:pointer}
+.dlist{overflow:auto;display:flex;flex-direction:column;gap:6px;min-height:120px}
+.rrow{cursor:pointer}
+.rrow:has(input:checked){border-color:var(--pink);background:rgba(255,79,184,.12)}
+.rfoot{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.rfoot #revCount{font-size:.85rem;color:var(--muted)}
+.rfoot select{background:rgba(10,4,24,.85);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:6px 8px;min-width:0}
+.modal .box{max-width:600px}
+.modal .box.wide{max-width:640px}
+
+.modal .box.wide{max-width:640px;overflow:auto}
+.box.wide .dlist{overflow:visible;flex:none;min-height:0}
+.box.wide #logList{max-height:240px;overflow:auto}
+.hint{font-size:.78rem;color:var(--muted)}
+.srow{flex-wrap:wrap}
+.dact{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.dact select{background:rgba(10,4,24,.85);border:1px solid var(--border);border-radius:10px;padding:6px 8px}
+.dact button{padding:5px 10px;font-size:.78rem}
+.newcode{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:10px 12px;border:1px solid var(--ok);border-radius:12px;background:rgba(61,220,151,.08);font-size:.85rem}
+.newcode code{background:rgba(255,255,255,.1);padding:3px 8px;border-radius:6px;user-select:all;font-size:.95rem}
+details summary{cursor:pointer;color:var(--pink2);font-weight:600;margin:4px 0}
+.logrow{font-size:.82rem;padding:6px 8px;border-bottom:1px solid rgba(255,255,255,.08);overflow-wrap:anywhere}
+.logrow small{display:block;color:var(--muted)}
+@media(max-width:820px){
+  .shell{padding:10px 12px;gap:8px}
+  .stats{gap:6px}
+  .stat{padding:8px 10px}.stat b{font-size:1.15rem}.stat span{font-size:.68rem}
+  .split{grid-template-columns:1fr}
+  .split .detail{display:none}
+  .split.show .list{display:none}
+  .split.show .detail{display:block}
+  .back{display:inline-block;margin-bottom:10px}
+  .live{display:none}
+  .detail{padding:16px}
+  .qas{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* appeal review */
+.appealbox{border-color:rgba(139,92,246,.55);background:linear-gradient(135deg,rgba(139,92,246,.14),rgba(10,4,24,.5))}
+.appealbox textarea{background:rgba(10,4,24,.85);border:1px solid var(--border);border-radius:10px;padding:8px 10px;outline:none;font:inherit;color:inherit;width:100%;min-height:58px;resize:vertical}
+.appealbox textarea:focus,.appealbox input:focus{border-color:var(--pink)}
+.appealbox input[type=text]{flex:1;min-width:160px;background:rgba(10,4,24,.85);border:1px solid var(--border);border-radius:10px;padding:8px 10px;outline:none}
+.appealbox .tg{padding:8px 16px}
+.appealbox .grey{color:#10131c;background:#aab0c4}
+.appealbox .decide{border-top:1px solid rgba(255,255,255,.1);padding-top:10px;display:grid;gap:8px}
+
+/* big progress bar, same pink/violet theme as the application form */
+.pbar .bar{height:26px;border-radius:99px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.08);overflow:hidden}
+.pbar .fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--violet),var(--pink));box-shadow:0 0 20px rgba(255,79,184,.6)}
+.pbar .ph span{color:var(--pink2)}
+.pbar.bad .fill{background:linear-gradient(90deg,#8b2a4a,var(--bad));box-shadow:0 0 20px rgba(255,107,139,.5)}
+.pbar.bad .ph span{color:var(--bad)}
+
+/* ---------- themed scrollbars (violet to pink, same as the progress bar) ---------- */
+::-webkit-scrollbar{width:14px;height:14px}
+::-webkit-scrollbar-track{background:rgba(255,255,255,.05);border-radius:99px}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--violet),var(--pink));border-radius:99px;border:3px solid rgba(20,9,42,.9);min-height:48px}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#a37cff,var(--pink2))}
+::-webkit-scrollbar-corner{background:transparent}
+@supports not selector(::-webkit-scrollbar){*{scrollbar-width:thin;scrollbar-color:var(--pink) rgba(255,255,255,.08)}}
+</style>
+</head>
+<body>
+
+<!-- Staff login -->
+<div class="loginWrap" id="loginView" hidden>
+  <form class="login" id="loginForm" autocomplete="off">
+    <img class="logo" id="logo2" alt="Will Mac logo">
+    <h2 id="loginTitle">Staff login</h2>
+    <p id="loginSub">Restricted access. Log in with Discord. Your server role decides what you can do here.</p>
+    <button class="go dc" id="dcBtn" type="button">Log in with Discord</button>
+    <div class="err" id="loginErr" role="alert"></div>
+    <details class="alt">
+      <summary>Use a backup access code</summary>
+      <input type="password" id="user" placeholder="Access code" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Access code">
+      <button class="go" id="loginBtn" type="submit">Log in with code</button>
+    </details>
+    <a class="back" href="../">← Back to the application page</a>
+  </form>
+</div>
+
+<!-- Dashboard -->
+<div class="shell" id="dashView" hidden>
+  <header class="bar">
+    <a class="brand" href="../" title="Back to the application page">
+      <img class="logo" id="logo" alt="Will Mac logo">
+      <div><span class="eyebrow">Will Mac Community</span><h1>Staff <span>Dashboard</span></h1></div>
+    </a>
+    <span class="sp"></span>
+    <span class="live" id="who"></span>
+    <span class="live" id="live"></span>
+    <button id="appealsBtn" type="button">Appeals</button>
+    <button id="refresh" type="button">Refresh</button>
+    <button id="manage" type="button" hidden>Open / close</button>
+    <button id="rev" type="button" hidden>Review</button>
+    <button id="stf" type="button" hidden>Staff</button>
+    <a class="btn" href="handbook/">Handbook</a>
+    <a class="btn" href="../">Home</a>
+    <button id="logout" type="button">Log out</button>
+  </header>
+
+  <section class="mng" id="mng" hidden></section>
+  <section class="stats" id="stats"></section>
+
+  <div class="tools">
+    <input type="search" id="search" placeholder="Search names and answers" aria-label="Search applications">
+    <select id="typeSel" aria-label="Filter by type"></select>
+    <select id="sort" aria-label="Sort"><option value="new">Newest first</option><option value="old">Oldest first</option><option value="name">Name A to Z</option></select>
+  </div>
+
+  <div class="split" id="split">
+    <aside class="list" id="list" aria-label="Applications"></aside>
+    <article class="detail" id="detail" aria-live="polite"></article>
+  </div>
+</div>
+
+<!-- Review popup -->
+<div class="modal" id="revModal" hidden>
+  <div class="box" role="dialog" aria-modal="true" aria-label="Review applications">
+    <div class="mh"><h3>Review applications</h3><button id="revClose" type="button">Close</button></div>
+    <div class="rtools">
+      <input type="search" id="revSearch" placeholder="Search by name" aria-label="Search by name" autocomplete="off">
+      <select id="revFilter" aria-label="Filter by status">
+        <option value="all">All</option><option value="pending">Pending</option>
+        <option value="approved">Approved</option><option value="denied">Denied</option>
+      </select>
+    </div>
+    <label class="selall"><input type="checkbox" id="revAll"> Select all shown</label>
+    <div class="dlist" id="revList"></div>
+    <div class="rfoot">
+      <span id="revCount">0 selected</span>
+      <span class="sp"></span>
+      <select id="revStatus" aria-label="Set status to"></select>
+      <button class="tg" id="revSet" type="button">Set status</button>
+      <button class="tg" id="revOk" type="button">Approve</button>
+      <button class="tg off" id="revNo" type="button">Deny</button>
+      <button class="tg off" id="revDel" type="button">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- Staff access popup (admin only) -->
+<div class="modal" id="stfModal" hidden>
+  <div class="box wide" role="dialog" aria-modal="true" aria-label="Staff access">
+    <div class="mh"><h3>Staff access</h3><button id="stfClose" type="button">Close</button></div>
+    <p class="hint">Viewer: read only · Reviewer: approve and deny · Admin: everything. Give each person their own code so you can revoke it later.</p>
+    <div class="rtools">
+      <input type="text" id="stfName" placeholder="Name (e.g. Kelpie)" maxlength="40" aria-label="Name" autocomplete="off">
+      <select id="stfRole" aria-label="Role"><option value="viewer">Viewer</option><option value="reviewer">Reviewer</option><option value="admin">Admin</option></select>
+      <button class="tg" id="stfAdd" type="button">Create</button>
+    </div>
+    <div class="newcode" id="stfNew" hidden></div>
+    <div class="dlist" id="stfList"></div>
+    <p class="hint">Staff with a Mod, Lead Mod, Admin or Owner role in Discord log in automatically. Codes below are optional backups. The Owner key from supabase.sql always has admin access.</p>
+    <details id="accDet"><summary>Discord roles and people</summary>
+      <p class="hint">Choose what each Discord role can do. Anyone with a role gets it automatically when they log in. Changes sign everyone else out so they apply straight away.</p>
+      <div class="dlist" id="roleList"></div>
+      <p class="hint">Give one person access by their Discord ID (Settings > Advanced > Developer Mode, then right-click them > Copy User ID). The highest of their role or this wins.</p>
+      <div class="rtools">
+        <input type="text" id="pplId" placeholder="Discord ID" maxlength="25" inputmode="numeric" aria-label="Discord ID" autocomplete="off">
+        <input type="text" id="pplName" placeholder="Name" maxlength="40" aria-label="Name" autocomplete="off">
+        <select id="pplAcc" aria-label="Access"><option value="viewer">Viewer</option><option value="reviewer">Reviewer</option><option value="admin">Admin</option></select>
+        <button class="tg" id="pplAdd" type="button">Add</button>
+      </div>
+      <div class="dlist" id="pplList"></div>
+    </details>
+    <details><summary>Activity log</summary><div class="dlist" id="logList"></div></details>
+  </div>
+</div>
+
+<div class="toast" id="toast" hidden role="status"></div>
+
+<script src="../config.js"></script>
+<script>
+const C = window.WM_CONFIG;
+const T = (C.types && C.types.length) ? C.types : [{ id: "mod", title: "Moderator", questions: C.questions }];
+const iconOf = t => { const i = t.icon || (C.icons || {})[t.id] || ""; return /^(https?:|data:)/.test(i) ? `<img src="${i}" alt="" style="filter:brightness(0) invert(1)">` : i; };
+const tOf = a => T.find(t => t.id === a.type) || { id: a.type, title: a.type, questions: [] };
+let ftype = "all", errMsg = "", closedDB = new Set();
+const $ = s => document.querySelector(s);
+document.body.style.backgroundImage = `url("${C.background}")`;
+$("#logo").src = C.logo; $("#logo2").src = C.logo;
+
+const store = {
+  get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
+  del(k) { try { localStorage.removeItem(k); } catch (e) {} }
+};
+let apps = [], sel = null, query = "", sort = "new", loaded = false, error = "";
+let staff = store.get("wm-staff", "");
+let seen = new Set(store.get("wm-seen", []));
+
+const base = (C.supabaseUrl || "").trim().replace(/\/+$/, ""), akey = (C.supabaseKey || "").trim();
+const hdrs = () => {
+  const h = { apikey: akey, "Content-Type": "application/json" };
+  if (akey.startsWith("eyJ")) h.Authorization = "Bearer " + akey;
+  return h;
+};
+async function rpc(fn, user, extra) {
+  const r = await fetch(base + "/rest/v1/rpc/" + fn, { method: "POST", headers: hdrs(), body: JSON.stringify(user === null ? {} : { staff_key: user, ...extra }), cache: "no-store" });
+  if (!r.ok) { let b = ""; try { b = (await r.text()).slice(0, 300); } catch (e) {} throw new Error("HTTP " + r.status + " " + b); }
+  return r.json();
+}
+
+async function rpcRaw(fn, body) {
+  const r = await fetch(base + "/rest/v1/rpc/" + fn, { method: "POST", headers: hdrs(), body: JSON.stringify(body), cache: "no-store" });
+  if (!r.ok) { let b = ""; try { b = (await r.text()).slice(0, 300); } catch (e) {} throw new Error("HTTP " + r.status + " " + b); }
+  return r.json();
+}
+
+function el(tag, attrs = {}, ...kids) {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === "class") n.className = v;
+    else if (k.startsWith("on")) n.addEventListener(k.slice(2), v);
+    else n.setAttribute(k, v);
+  }
+  n.append(...kids.flat().filter(x => x != null && x !== false));
+  return n;
+}
+let tt;
+function toast(msg, ms) { const t = $("#toast"); t.textContent = msg; t.hidden = false; clearTimeout(tt); tt = setTimeout(() => t.hidden = true, ms || 2500); }
+function ago(ts) {
+  const m = Math.floor((Date.now() - ts) / 60000);
+  if (m < 1) return "just now"; if (m < 60) return m + "m ago";
+  const h = Math.floor(m / 60); if (h < 24) return h + "h ago";
+  const d = Math.floor(h / 24); if (d < 30) return d + "d ago";
+  return new Date(ts).toLocaleDateString();
+}
+const label = (i, a) => { const q = a && tOf(a).questions[i]; return (q && q.short) || "Question " + (i + 1); };
+
+/* ---------- progress statuses ---------- */
+const ST = {
+  pending:   ["Submitted", "#ff8fd4"],
+  in_review: ["Being reviewed", "#b79cff"],
+  interview: ["Interview", "#5cc8ff"],
+  more_info: ["Needs more info", "#ffc857"],
+  on_hold:   ["On hold", "#aab0c4"],
+  approved:  ["Approved", "#3ddc97"],
+  denied:    ["Denied", "#ff6b8b"]
+};
+const PCT = { pending: 25, in_review: 50, more_info: 50, on_hold: 50, interview: 75, approved: 100, denied: 100 };
+const stName = (k, type) => type === "appeal" && k === "approved" ? "Accepted" : (ST[k] || ST.pending)[0];
+const stTag = (k, type) => { const c = (ST[k] || ST.pending)[1]; return el("b", { class: "tag", style: "color:" + c + ";border-color:" + c }, stName(k, type)); };
+const ERR = { "-2": "your role isn't allowed to do that", "-7": "appeals are decided with votes in the appeal panel, not here" };
+
+/* ---------- login ---------- */
+let me = { role: "", name: "" };
+async function check(user) {
+  const r = await rpc("staff_login", user);
+  if (r && r.role) { me = { role: r.role, name: r.name || "" }; applyRole(); return true; }
+  return false;
+}
+function applyRole() {
+  const adm = me.role === "admin", rv = adm || me.role === "reviewer";
+  $("#manage").hidden = !adm; $("#stf").hidden = !adm; $("#rev").hidden = !rv; $("#revDel").hidden = !adm;
+  if (!adm) { $("#mng").hidden = true; $("#stfModal").hidden = true; }
+  if (!rv) $("#revModal").hidden = true;
+  const lbl = { viewer: "Viewer", reviewer: "Reviewer", admin: "Admin" }[me.role] || "";
+  $("#who").textContent = me.name ? me.name + " · " + lbl : lbl;
+}
+function showLogin(msg) {
+  $("#dashView").hidden = true; $("#loginView").hidden = false;
+  $("#loginErr").textContent = msg || ""; $("#dcBtn").disabled = false;
+}
+function showDenied(msg) {
+  $("#dashView").hidden = true; $("#loginView").hidden = false;
+  $("#loginForm").classList.add("denied");
+  $("#loginTitle").textContent = "Access denied";
+  $("#loginSub").textContent = "This area is restricted to Will Mac staff. " + msg;
+  $("#loginErr").textContent = ""; $("#dcBtn").textContent = "Try a different Discord account"; $("#dcBtn").disabled = false;
+}
+function showDash() { $("#loginForm").classList.remove("denied"); $("#loginTitle").textContent = "Staff login"; $("#dcBtn").textContent = "Log in with Discord"; $("#loginView").hidden = true; $("#dashView").hidden = false; loaded = false; render(); fetchApps(true); }
+function logout() { if (staff) rpcRaw("staff_logout", { staff_key: staff }).catch(() => {}); staff = ""; store.del("wm-staff"); apps = []; sel = null; $("#user").value = ""; $("#revModal").hidden = true; $("#stfModal").hidden = true; me = { role: "", name: "" }; showLogin(); }
+
+$("#loginForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const u = $("#user").value.trim(), btn = $("#loginBtn"); $("#loginErr").textContent = "";
+  if (!u) return;
+  if (!base || !akey) return ($("#loginErr").textContent = "Storage isn't connected yet. Add the Supabase URL and key to config.js.");
+  btn.disabled = true;
+  try {
+    if (await check(u)) { staff = u; store.set("wm-staff", u); showDash(); }
+    else $("#loginErr").textContent = "That access code isn't recognised or has been revoked.";
+  } catch (err) { $("#loginErr").textContent = "Couldn't reach the database (" + err.message + "). Check config.js and that supabase.sql was run."; }
+  btn.disabled = false;
+});
+
+/* ---------- Discord role login ---------- */
+const DC_ERR = {
+  not_in_server: "This Discord account isn't in the server.",
+  no_role: "Your Discord account doesn't have a staff role.",
+  bad_token: "Discord didn't accept the login. Try again.",
+  discord_unreachable: "The database couldn't reach Discord. Try again in a minute, or use a backup code.",
+  discord_error: "Discord returned an error. Try again in a minute."
+};
+$("#dcBtn").onclick = () => {
+  if (!base || !akey) return ($("#loginErr").textContent = "Storage isn't connected yet. Add the Supabase URL and key to config.js.");
+  location.href = base + "/auth/v1/authorize?provider=discord&scopes=" + encodeURIComponent("guilds.members.read") +
+    "&redirect_to=" + encodeURIComponent(location.origin + location.pathname.replace(/index\.html$/, "").replace(/\/?$/, "/"));
+};
+async function finishDiscord(hs) {
+  const p = Object.fromEntries(new URLSearchParams(hs));
+  history.replaceState(null, "", location.pathname + location.search);
+  if (p.error || !p.provider_token) { showLogin(p.error_description || "Discord didn't send the permission we need. Try again."); return; }
+  $("#dcBtn").disabled = true; $("#loginView").hidden = false; $("#dashView").hidden = true;
+  $("#loginErr").textContent = "Checking your roles…";
+  try {
+    const r = await rpcRaw("staff_login_discord", { p_token: p.provider_token });
+    if (r && r.key) { staff = r.key; store.set("wm-staff", staff); if (await check(staff)) return showDash(); }
+    if (r && (r.error === "no_role" || r.error === "not_in_server")) return showDenied(DC_ERR[r.error]);
+    showLogin((r && DC_ERR[r.error]) || "Couldn't log you in.");
+  } catch (err) { showLogin("Couldn't reach the database (" + err.message + "). Did you run the new supabase.sql?"); }
+  $("#dcBtn").disabled = false;
+}
+$("#logout").onclick = logout;
+
+/* ---------- data ---------- */
+async function fetchApps(quiet) {
+  try {
+    if (!(await check(staff))) return logout();
+    const rows = await rpc("list_applications", staff);
+    apps = rows.map(a => ({ id: a.id, at: Date.parse(a.created_at), name: a.discord_name, type: a.type || "mod", status: a.status || "pending", reviewer: a.reviewer || "", note: a.status_note || "", answers: Array.isArray(a.answers) ? a.answers.map(String) : [] }));
+    error = ""; errMsg = "";
+    $("#live").replaceChildren(el("i"), "Updated " + new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
+    if (quiet !== true) toast("Refreshed");
+  } catch (e) { error = "load"; errMsg = e.message; }
+  loaded = true; render();
+  if (!$("#revModal").hidden) { const ids = new Set(apps.map(a => a.id)); picked.forEach(id => { if (!ids.has(id)) picked.delete(id); }); renderRev(); }
+}
+
+/* ---------- render ---------- */
+function visible() {
+  const q = query.trim().toLowerCase();
+  let v = apps.filter(a => (ftype === "all" || a.type === ftype) && (!q || (a.name + " " + a.answers.join(" ")).toLowerCase().includes(q)));
+  if (sort === "old") v = v.slice().sort((a, b) => a.at - b.at);
+  else if (sort === "name") v = v.slice().sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base" }));
+  return v;
+}
+
+function render() {
+  const day = 864e5, now = Date.now();
+  $("#stats").replaceChildren(...[
+    [apps.length, "Total"], [apps.filter(a => now - a.at < day).length, "Last 24 hours"],
+    [apps.filter(a => now - a.at < 7 * day).length, "Last 7 days"], [apps.filter(a => !seen.has(a.id)).length, "Unread"]
+  ].map(([n, t]) => el("div", { class: "stat" }, el("b", {}, String(n)), el("span", {}, t))));
+
+  const openAp = apps.filter(a => a.type === "appeal" && a.status !== "approved" && a.status !== "denied").length;
+  $("#appealsBtn").textContent = "Appeals" + (openAp ? " (" + openAp + ")" : "");
+  $("#appealsBtn").style.borderColor = ftype === "appeal" ? "var(--pink)" : "";
+  const list = $("#list"), detail = $("#detail");
+  if (!loaded) { list.replaceChildren(el("div", { class: "empty" }, "Loading applications…")); detail.replaceChildren(); return; }
+  if (error === "load" && !apps.length) {
+    list.replaceChildren(el("div", { class: "empty" }, el("div", {}, el("b", {}, "Couldn't load applications"), errMsg ? el("code", {}, errMsg) : null, "Check the Supabase URL and key, and that you ran ", el("code", {}, "supabase.sql"), ".")));
+    detail.replaceChildren(); return;
+  }
+  const v = visible();
+  if (!v.some(a => a.id === sel)) sel = null;
+  if (!sel && v.length && matchMedia("(min-width:821px)").matches) sel = v[0].id;
+  list.replaceChildren(...(v.length ? v.map(item) : [el("div", { class: "empty" }, apps.length ? "No applications match." : "No applications yet. They show up here the moment someone applies.")]));
+  renderDetail();
+}
+
+function item(a) {
+  return el("button", { class: "item" + (a.id === sel ? " sel" : ""), type: "button", onclick: () => open(a.id) },
+    el("div", { class: "r1" }, !seen.has(a.id) ? el("span", { class: "dot", title: "Unread" }) : null,
+      el("span", { class: "nm" }, a.name || "Unknown"), el("span", { class: "tm" }, ago(a.at))),
+    el("div", { class: "sn" }, el("b", { class: "tag" }, tOf(a).title), a.status && a.status !== "pending" ? stTag(a.status, a.type) : null, a.reviewer && (a.status === "in_review" || a.status === "interview") ? el("b", { class: "tag" }, "by " + a.reviewer) : null, (a.answers[1] || "").replace(/\s+/g, " ")));
+}
+
+function renderDetail() {
+  const d = $("#detail"), a = apps.find(x => x.id === sel);
+  if (!a) { d.replaceChildren(el("div", { class: "empty" }, "Select an application to read it.")); return; }
+  const canSet = me.role === "admin" || me.role === "reviewer";
+  d.replaceChildren(
+    el("button", { class: "back", type: "button", onclick: () => { sel = null; $("#split").classList.remove("show"); render(); } }, "← All applications"),
+    el("div", { class: "dh" }, el("h2", {}, a.name || "Unknown")),
+    el("div", { class: "dmeta" }, tOf(a).title + " application · " + new Date(a.at).toLocaleString() + " · " + ago(a.at)),
+    el("div", { class: "pbar" + (a.status === "denied" ? " bad" : "") },
+      el("div", { class: "ph" }, el("b", {}, stName(a.status, a.type) + (a.reviewer && a.status !== "pending" ? " · " + a.reviewer : "")), el("span", {}, PCT[a.status || "pending"] + "%")),
+      el("div", { class: "bar" }, el("div", { class: "fill", style: "width:" + PCT[a.status || "pending"] + "%" }))),
+    canSet && a.type === "appeal" ? appealPanel(a) : null,
+    canSet && !(a.type === "appeal" && (a.status === "approved" || a.status === "denied")) ? progressPanel(a) : null,
+    el("div", { class: "hist" }, el("h3", {}, "Progress history"), el("div", { id: "histBox" }, el("div", { class: "hint" }, "Loading…"))),
+    el("div", { class: "acts" },
+      el("button", { type: "button", onclick: () => copy(a.name, "Name copied") }, "Copy name"),
+      el("button", { type: "button", onclick: () => copy(a.answers.map((x, i) => label(i, a) + ":\n" + x).join("\n\n"), "Application copied") }, "Copy all")),
+    el("dl", { class: "qas" }, a.answers.map((x, i) => el("div", { class: "qa" + (x.length > 140 ? " wide" : "") }, el("dt", {}, label(i, a)), el("dd", {}, x)))));
+  loadHist(a.id);
+  if (canSet && a.type === "appeal") loadVotes(a.id);
+}
+
+/* ---------- ban appeals: vote, then decide ---------- */
+const VOTE = { accept: ["Accept", "#3ddc97"], deny: ["Deny", "#ff6b8b"], recuse: ["Recused", "#aab0c4"] };
+const voteTag = v => { const [n, c] = VOTE[v] || VOTE.recuse; return el("b", { class: "tag", style: "color:" + c + ";border-color:" + c }, n); };
+const APPEAL_ERR = {
+  "-1": "invalid request", "-2": "your role isn't allowed to do that",
+  "-3": "at least 2 accept/deny votes are needed first",
+  "-4": "the decision has to match the majority vote",
+  "-5": "this appeal was already decided",
+  "-6": "cast your own vote before deciding (don't decide alone)"
+};
+async function appealCall(fn, extra, okMsg) {
+  try {
+    const n = await rpc(fn, staff, extra);
+    if (typeof n !== "number" || n < 0) { toast("Couldn't do that: " + (APPEAL_ERR[n] || "server returned " + JSON.stringify(n) + " (did you run the new supabase.sql?)"), 9000); return false; }
+    if (okMsg) toast(okMsg);
+    return true;
+  } catch (e) { toast("Couldn't do that: " + (e && e.message || e) + " (did you run the new supabase.sql?)", 9000); return false; }
+}
+async function loadVotes(id) {
+  try {
+    const rows = await rpc("list_appeal_votes", staff, { p_id: String(id) });
+    const box = $("#voteBox"); if (sel !== id || !box) return;
+    const c = k => rows.filter(v => v.vote === k).length;
+    box.replaceChildren(
+      el("div", { class: "hint" }, c("accept") + " accept · " + c("deny") + " deny · " + c("recuse") + " recused" + (c("accept") + c("deny") < 2 ? " · needs " + (2 - c("accept") - c("deny")) + " more vote(s)" : "")),
+      ...(rows.length ? rows.map(v => el("div", { class: "hrow" }, voteTag(v.vote),
+        el("span", { class: "hint" }, v.voter + (v.mine ? " (you)" : "") + " · " + new Date(v.at).toLocaleString()),
+        v.note ? el("div", { class: "hnote" }, v.note) : null)) : [el("div", { class: "hint" }, "No votes yet.")]));
+  } catch (e) { const box = $("#voteBox"); if (box) box.textContent = "Votes unavailable (run the new supabase.sql)."; }
+}
+function appealPanel(a) {
+  const t = tOf(a), R = t.responses || {}, decided = a.status === "approved" || a.status === "denied";
+  const box = el("div", { class: "prog appealbox" },
+    el("h3", {}, "Appeal review"),
+    el("div", { class: "hint" }, "At least 2 staff vote and the person who issued the punishment should press Recuse. First check: " + ((t.evidence || ["logs", "screenshots", "context"]).join(", ").toLowerCase()) + "."),
+    el("div", { id: "voteBox" }, el("div", { class: "hint" }, "Loading votes…")));
+  if (decided) { box.append(el("div", { class: "hint" }, "Decided: " + stName(a.status, "appeal") + (a.reviewer ? " by " + a.reviewer : "") + ".")); return box; }
+
+  const vnote = el("input", { type: "text", maxlength: "300", placeholder: "Reason for your vote (staff only, optional)", "aria-label": "Vote reason" });
+  const castBtn = (v, label, cls) => el("button", { type: "button", class: cls, onclick: async e => {
+    e.target.disabled = true;
+    if (await appealCall("cast_appeal_vote", { p_id: String(a.id), p_vote: v, p_note: vnote.value.trim() || null }, "Vote saved")) { await loadVotes(a.id); fetchApps(true); }
+    e.target.disabled = false;
+  } }, label);
+  box.append(el("div", { class: "row" }, vnote, castBtn("accept", "Accept", "tg"), castBtn("deny", "Deny", "tg off"), castBtn("recuse", "Recuse", "tg grey")));
+
+  const msg = el("textarea", { maxlength: "300", placeholder: "Message the applicant will see. A template fills in when you pick an outcome.", "aria-label": "Message to applicant" });
+  const tplList = [["Accepted", R.accepted], ["Denied", R.denied], ["Denied: lack of accountability", R.denyReason], ["Auto-denied (not eligible)", R.autoDenied]].filter(x => x[1]);
+  const tpl = el("select", { "aria-label": "Message template" }, el("option", { value: "" }, "Template…"), ...tplList.map(([n]) => el("option", { value: n }, n)));
+  tpl.onchange = () => { const q = tplList.find(x => x[0] === tpl.value); if (q) msg.value = q[1]; tpl.value = ""; };
+  const all = () => tplList.map(x => x[1]);
+  let armed = null, timer; const btns = [];
+  const mkDecide = (kind, label, cls, key, outcome, done) => {
+    const b = el("button", { type: "button", class: cls }, label); btns.push([b, label]);
+    b.onclick = async () => {
+      if (armed !== kind) {
+        armed = kind; btns.forEach(([x, l]) => { x.textContent = l; });
+        if (!msg.value.trim() || all().includes(msg.value.trim())) msg.value = R[key] || "";
+        b.textContent = "Confirm: " + label; clearTimeout(timer); timer = setTimeout(() => { armed = null; btns.forEach(([x, l]) => { x.textContent = l; }); }, 8000); return;
+      }
+      armed = null; clearTimeout(timer); b.disabled = true;
+      if (await appealCall("decide_appeal", { p_id: String(a.id), p_outcome: outcome, p_note: msg.value.trim() || null }, done)) await fetchApps(true);
+      else { b.disabled = false; btns.forEach(([x, l]) => { x.textContent = l; }); }
+    };
+    return b;
+  };
+  const ad = (t.autoDeny || []).join(", ");
+  box.append(el("div", { class: "decide" },
+    el("h3", {}, "Decision"),
+    msg,
+    el("div", { class: "row" }, tpl,
+      mkDecide("acc", "Accept appeal", "tg", "accepted", "accepted", "Appeal accepted. Lift the punishment and put them on probation."),
+      mkDecide("den", "Deny appeal", "tg off", "denied", "denied", "Appeal denied"),
+      mkDecide("auto", "Auto-deny", "tg off", "autoDenied", "auto_denied", "Appeal auto-denied")),
+    el("div", { class: "hint" }, "Accept and Deny need 2+ votes, your own vote, and must match the majority. " + (t.probation || "") + (ad ? " Auto-deny is for: " + ad.toLowerCase() + "." : ""))));
+  return box;
+}
+
+async function saveProgress(ids, status, reviewer, note) {
+  try {
+    const n = await rpc("set_application_progress", staff, { p_ids: ids.map(String), p_status: status, p_reviewer: reviewer || null, p_note: note || null });
+    if (typeof n !== "number" || n < 0) throw new Error(ERR[n] || "server returned " + JSON.stringify(n));
+    toast(n + " set to " + stName(status));
+    await fetchApps(true);
+    return true;
+  } catch (e) { toast("Couldn't update: " + (e && e.message || e) + " (did you run the new supabase.sql?)", 9000); return false; }
+}
+
+const QUICK = [
+  ["Under review", "A staff member is reading your application now."],
+  ["Interview scheduled", "We'll DM you on Discord with an interview time. Please keep your DMs open."],
+  ["Check your DMs", "We sent you a Discord DM. Please reply when you can."],
+  ["Need more info", "We need a bit more info about your experience. Please reply to our DM."],
+  ["Welcome aboard", "Welcome to the team! Check your DMs for next steps."],
+  ["Not this time", "Thanks for applying. We've decided not to move forward this time."]
+];
+function progressPanel(a) {
+  const stSel = el("select", { "aria-label": "Status" }, ...Object.keys(ST).map(k => el("option", { value: k }, ST[k][0])));
+  stSel.value = ST[a.status] ? a.status : "pending";
+  const rev = el("input", { type: "text", maxlength: "40", placeholder: "Reviewer (who is handling it)", "aria-label": "Reviewer" });
+  rev.value = a.reviewer || "";
+  const note = el("textarea", { maxlength: "300", placeholder: "Optional message the applicant will see, e.g. Interview Friday 7pm CT", "aria-label": "Message to applicant" });
+  note.value = a.note || "";
+  stSel.onchange = () => { if (!rev.value.trim() && (stSel.value === "in_review" || stSel.value === "interview")) rev.value = me.name; };
+  const save = el("button", { type: "button", class: "save", onclick: async () => { save.disabled = true; await saveProgress([a.id], stSel.value, rev.value.trim(), note.value.trim()); save.disabled = false; } }, "Save progress");
+  const tpl = el("select", { "aria-label": "Quick message" }, el("option", { value: "" }, "Quick message…"), ...QUICK.map(([n]) => el("option", { value: n }, n)));
+  tpl.onchange = () => { const q = QUICK.find(x => x[0] === tpl.value); if (q) note.value = q[1]; tpl.value = ""; };
+  const take = el("button", { type: "button", onclick: async () => { await saveProgress([a.id], "in_review", me.name, note.value.trim()); } }, "I'll review this");
+  return el("div", { class: "prog" },
+        el("div", { class: "row" }, stSel, rev, take),
+    note,
+    el("div", { class: "row" }, tpl, el("span", { class: "hint" }, "Status and message show on the applicant's progress bar."), el("span", { class: "right" }, save)));
+}
+
+async function loadHist(id) {
+  try {
+    const rows = await rpc("list_application_history", staff, { p_id: String(id) });
+    const box = $("#histBox"); if (sel !== id || !box) return;
+    box.replaceChildren(...((rows && rows.length) ? rows.map(h => el("div", { class: "hrow" }, stTag(h.status),
+      el("span", { class: "hint" }, (h.reviewer ? h.reviewer + " · " : "") + "set by " + (h.actor || "?") + " · " + new Date(h.at).toLocaleString()),
+      h.note ? el("div", { class: "hnote" }, h.note) : null)) : [el("div", { class: "hint" }, "No changes yet.")]));
+  } catch (e) { const box = $("#histBox"); if (box) box.textContent = "History unavailable (run the new supabase.sql)."; }
+}
+
+function open(id) {
+  sel = id; seen.add(id); store.set("wm-seen", [...seen]);
+  $("#split").classList.add("show");
+  render(); $("#detail").scrollTop = 0;
+}
+async function copy(text, msg) { try { await navigator.clipboard.writeText(text); toast(msg); } catch (e) { toast("Couldn't copy"); } }
+
+/* ---------- open / close ---------- */
+async function loadClosed() { try { const a = await rpc("get_closed_types", null); if (Array.isArray(a)) closedDB = new Set(a); } catch (e) {} renderMng(); }
+function renderMng() {
+  $("#mng").replaceChildren(...T.map(t => {
+    const cfgOff = C.applicationsOpen === false || t.open === false, off = cfgOff || closedDB.has(t.id);
+    const b = el("button", { type: "button", class: "tg" + (off ? " off" : ""), ...(cfgOff ? { disabled: "" } : {}), title: cfgOff ? "Closed in config.js" : "Click to switch", onclick: async () => {
+      b.disabled = true;
+      try { if (await rpc("set_type_open", staff, { p_type: t.id, p_open: closedDB.has(t.id) }) !== true) throw 0; toast(t.title + (closedDB.has(t.id) ? " opened" : " closed")); await loadClosed(); }
+      catch (e) { toast("Couldn't change it. Did you run the new supabase.sql?"); b.disabled = false; }
+    } }, off ? "Closed" : "Open");
+    const ic = el("span", { class: "pic" }); ic.innerHTML = iconOf(t);
+    return el("div", { class: "mrow" }, ic, el("div", { class: "nm" }, t.title, cfgOff ? el("small", {}, "Closed in config.js") : null), b);
+  }));
+}
+$("#manage").onclick = () => { const m = $("#mng"); m.hidden = !m.hidden; if (!m.hidden) loadClosed(); };
+
+/* ---------- review (select / approve / deny / delete) ---------- */
+let rq = "", rf = "all", picked = new Set(), delArm = false;
+const revVisible = () => {
+  const q = rq.trim().toLowerCase();
+  return apps.filter(a => (rf === "all" || a.status === rf) && (!q || (a.name || "").toLowerCase().includes(q)));
+};
+function renderRevFoot() {
+  const n = picked.size;
+  $("#revCount").textContent = n + " selected";
+  ["#revOk", "#revNo", "#revDel", "#revSet"].forEach(s => $(s).disabled = n === 0);
+  $("#revDel").textContent = delArm ? "Confirm delete (" + n + ")" : "Delete";
+}
+function renderRev() {
+  const v = revVisible();
+  $("#revList").replaceChildren(...(v.length ? v.map(a => {
+    const cb = el("input", { type: "checkbox", "aria-label": "Select " + (a.name || "application") });
+    cb.checked = picked.has(a.id);
+    cb.onchange = () => { cb.checked ? picked.add(a.id) : picked.delete(a.id); delArm = false; renderRev(); };
+    return el("label", { class: "mrow rrow" }, cb,
+      el("div", { class: "nm" }, a.name || "Unknown", el("small", {}, tOf(a).title + " · " + stName(a.status) + (a.reviewer ? " · " + a.reviewer : "") + " · " + ago(a.at))));
+  }) : [el("div", { class: "empty" }, "No matching applications.")]));
+  $("#revAll").checked = v.length > 0 && v.every(a => picked.has(a.id));
+  renderRevFoot();
+}
+async function setStatus(status) {
+  const ids = [...picked].map(String);
+  if (!ids.length) return;
+  try {
+    const n = await rpc("set_application_status", staff, { p_ids: ids, p_status: status });
+    if (typeof n !== "number" || n < 0) throw new Error(ERR[n] || "server returned " + JSON.stringify(n));
+    apps.forEach(a => { if (picked.has(a.id)) a.status = status; });
+    toast(n + " " + status);
+    picked.clear(); delArm = false; render(); renderRev();
+  } catch (e) { toast("Couldn't update: " + (e && e.message || e), 9000); }
+}
+async function deleteSelected() {
+  if (!delArm) { delArm = true; renderRevFoot(); return; }
+  const ids = [...picked].map(String);
+  try {
+    const n = await rpc("delete_applications", staff, { p_ids: ids });
+    if (typeof n !== "number" || n < 0) throw new Error(n === -2 ? "your role isn't allowed to do that" : "server returned " + JSON.stringify(n));
+    apps = apps.filter(a => !picked.has(a.id));
+    if (picked.has(sel)) sel = null;
+    toast("Deleted " + n);
+    picked.clear(); delArm = false; render(); renderRev();
+  } catch (e) { toast("Couldn't delete: " + (e && e.message || e), 9000); }
+}
+const closeRev = () => { $("#revModal").hidden = true; };
+$("#rev").onclick = () => { rq = ""; rf = "all"; picked.clear(); delArm = false; $("#revSearch").value = ""; $("#revFilter").value = "all"; $("#revModal").hidden = false; renderRev(); $("#revSearch").focus(); };
+$("#revClose").onclick = closeRev;
+$("#revModal").addEventListener("click", e => { if (e.target.id === "revModal") closeRev(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeRev(); });
+$("#revSearch").addEventListener("input", e => { rq = e.target.value; renderRev(); });
+$("#revFilter").addEventListener("change", e => { rf = e.target.value; renderRev(); });
+$("#revAll").addEventListener("change", e => { revVisible().forEach(a => e.target.checked ? picked.add(a.id) : picked.delete(a.id)); delArm = false; renderRev(); });
+$("#revOk").onclick = () => setStatus("approved");
+$("#revSet").onclick = async () => { if (!picked.size) return; if (await saveProgress([...picked], $("#revStatus").value, null, null)) { picked.clear(); delArm = false; renderRev(); } };
+$("#revStatus").replaceChildren(...Object.keys(ST).map(k => el("option", { value: k }, ST[k][0])));
+$("#revFilter").replaceChildren(el("option", { value: "all" }, "All"), ...Object.keys(ST).map(k => el("option", { value: k }, ST[k][0])));
+$("#revNo").onclick = () => setStatus("denied");
+$("#revDel").onclick = deleteSelected;
+
+/* ---------- staff access (admin only) ---------- */
+let staffRows = [];
+const roleName = r => ({ viewer: "Viewer", reviewer: "Reviewer", admin: "Admin" }[r] || r);
+async function adm(fn, extra, okMsg) {
+  try {
+    const r = await rpc(fn, staff, extra);
+    if (r === null || r === false || (typeof r === "number" && r < 0)) throw new Error("not allowed or invalid");
+    if (okMsg) toast(okMsg);
+    return r;
+  } catch (e) { toast("Couldn't do that: " + (e && e.message || e), 9000); return null; }
+}
+function twoStep(text, fn) {
+  const b = el("button", { type: "button" }, text);
+  let armed = false;
+  b.onclick = async () => {
+    if (!armed) { armed = true; b.textContent = "Sure?"; setTimeout(() => { armed = false; b.textContent = text; }, 4000); return; }
+    armed = false; b.textContent = text; await fn();
+  };
+  return b;
+}
+function showCode(name, code) {
+  const box = $("#stfNew");
+  box.replaceChildren(el("div", {}, "Login code for " + name + " (shown once, copy it now):"), el("code", {}, code),
+    el("button", { type: "button", onclick: () => copy(code, "Code copied") }, "Copy"));
+  box.hidden = false;
+}
+function renderStaff() {
+  $("#stfList").replaceChildren(...(staffRows.length ? staffRows.map(s => {
+    const rs = el("select", { "aria-label": "Role for " + s.name }, ...["viewer", "reviewer", "admin"].map(r => el("option", { value: r }, roleName(r))));
+    rs.value = s.role;
+    rs.onchange = async () => { await adm("update_staff", { p_id: s.id, p_role: rs.value, p_active: null }, s.name + " is now " + roleName(rs.value)); loadStaff(); };
+    const tg = el("button", { type: "button", class: "tg" + (s.active ? " off" : ""), onclick: async () => {
+      await adm("update_staff", { p_id: s.id, p_role: null, p_active: !s.active }, s.name + (s.active ? " revoked" : " restored")); loadStaff();
+    } }, s.active ? "Revoke" : "Restore");
+    const nc = twoStep("New code", async () => { const c = await adm("reset_staff_code", { p_id: s.id }); if (c) showCode(s.name, c); loadStaff(); });
+    const rm = twoStep("Remove", async () => { await adm("delete_staff", { p_id: s.id }, s.name + " removed"); loadStaff(); });
+    return el("div", { class: "mrow srow" },
+      el("div", { class: "nm" }, s.name, el("small", {}, (s.active ? "Active" : "Revoked") + " · last used " + (s.last_used ? ago(Date.parse(s.last_used)) : "never"))),
+      el("div", { class: "dact" }, rs, tg, nc, rm));
+  }) : [el("div", { class: "hint" }, "No logins yet. Create one above.")]));
+}
+function renderLog(rows) {
+  $("#logList").replaceChildren(...((rows && rows.length) ? rows.map(r => el("div", { class: "logrow" },
+    el("b", {}, r.actor), " " + r.action + (r.detail ? ": " + r.detail : ""), el("small", {}, new Date(r.at).toLocaleString()))) : [el("div", { class: "hint" }, "Nothing logged yet.")]));
+}
+
+/* ---------- Discord roles + people (admin) ---------- */
+let accData = { roles: [], people: [] };
+function renderAccess() {
+  const opts = (withNone) => (withNone ? [["none", "No access"]] : []).concat([["viewer", "Viewer"], ["reviewer", "Reviewer"], ["admin", "Admin"]]);
+  $("#roleList").replaceChildren(...accData.roles.map(r => {
+    const sel = el("select", { "aria-label": "Access for " + r.label }, ...opts(true).map(([v, t]) => el("option", { value: v }, t)));
+    sel.value = r.access;
+    sel.onchange = async () => { await adm("set_role_access", { p_role_id: r.role_id, p_access: sel.value }, r.label + " is now " + sel.value); loadAccess(); };
+    return el("div", { class: "mrow srow" }, el("div", { class: "nm" }, r.label, el("small", {}, "Discord role")), el("div", { class: "dact" }, sel));
+  }));
+  $("#pplList").replaceChildren(...(accData.people.length ? accData.people.map(pp => {
+    const sel = el("select", { "aria-label": "Access for " + pp.name }, ...opts(false).map(([v, t]) => el("option", { value: v }, t)));
+    sel.value = pp.access;
+    const owner = pp.discord_id === "1271246652421701633";
+    sel.disabled = owner;
+    sel.onchange = async () => { await adm("set_person_access", { p_discord_id: pp.discord_id, p_name: pp.name, p_access: sel.value }, pp.name + " is now " + sel.value); loadAccess(); };
+    const rm = owner ? null : twoStep("Remove", async () => { await adm("set_person_access", { p_discord_id: pp.discord_id, p_name: pp.name, p_access: null }, pp.name + " removed"); loadAccess(); });
+    return el("div", { class: "mrow srow" }, el("div", { class: "nm" }, pp.name, el("small", {}, pp.discord_id + (owner ? " · owner, always admin" : ""))), el("div", { class: "dact" }, sel, rm));
+  }) : [el("div", { class: "hint" }, "No individual people yet.")]));
+}
+async function loadAccess() {
+  try { const r = await rpc("list_access", staff); if (r) { accData = r; renderAccess(); } }
+  catch (e) { toast("Couldn't load roles: " + (e && e.message || e), 9000); }
+}
+$("#pplAdd").onclick = async () => {
+  const id = $("#pplId").value.trim(), nm = $("#pplName").value.trim();
+  if (!/^[0-9]{5,25}$/.test(id) || !nm) return toast("Enter the Discord ID (numbers) and a name");
+  if (await adm("set_person_access", { p_discord_id: id, p_name: nm, p_access: $("#pplAcc").value }, nm + " added")) { $("#pplId").value = ""; $("#pplName").value = ""; loadAccess(); }
+};
+async function loadStaff() {
+  loadAccess();
+  try { staffRows = await rpc("list_staff", staff); renderStaff(); renderLog(await rpc("list_log", staff)); }
+  catch (e) { toast("Couldn't load staff: " + (e && e.message || e), 9000); }
+}
+$("#stfAdd").onclick = async () => {
+  const name = $("#stfName").value.trim();
+  if (!name) return toast("Enter a name first");
+  const c = await adm("create_staff", { p_name: name, p_role: $("#stfRole").value });
+  if (c) { showCode(name, c); $("#stfName").value = ""; loadStaff(); }
+};
+$("#stf").onclick = () => { $("#stfNew").hidden = true; $("#stfModal").hidden = false; loadStaff(); };
+$("#stfClose").onclick = () => { $("#stfModal").hidden = true; $("#stfNew").hidden = true; };
+$("#stfModal").addEventListener("click", e => { if (e.target.id === "stfModal") $("#stfClose").click(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") $("#stfClose").click(); });
+
+/* ---------- wiring ---------- */
+$("#search").addEventListener("input", e => { query = e.target.value; render(); });
+const tsel = $("#typeSel");
+tsel.append(el("option", { value: "all" }, "All types"), ...T.map(t => el("option", { value: t.id }, t.title)));
+tsel.addEventListener("change", e => { ftype = e.target.value; render(); });
+$("#appealsBtn").onclick = () => { ftype = ftype === "appeal" ? "all" : "appeal"; tsel.value = ftype; sel = null; render(); };
+$("#sort").addEventListener("change", e => { sort = e.target.value; render(); });
+$("#refresh").onclick = () => fetchApps();
+setInterval(() => { if (!document.hidden && staff && !$("#dashView").hidden && !document.querySelector("#detail .prog :focus")) fetchApps(true); }, 30000);
+
+(async () => {
+  const hs = location.hash.slice(1);
+  if (/(^|&)(provider_token|access_token|error)=/.test(hs)) return finishDiscord(hs);
+  if (staff && base && akey) {
+    try { if (await check(staff)) return showDash(); } catch (e) {}
+    staff = ""; store.del("wm-staff");
+  }
+  showLogin();
+})();
+</script>
+</body>
+</html>

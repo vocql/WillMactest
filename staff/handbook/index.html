@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Will Mac | Moderation &amp; Appeals Handbook</title>
+<meta name="theme-color" content="#14092a">
+<link rel="icon" href="https://images.guns.lol/637041cec591a6ab27615f0e2db44d08f3ce0c55/p6IK2p.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#ff4fb8;--pink2:#ff8fd4;--violet:#8b5cf6;--bg:#14092a;--card:rgba(22,10,44,.78);--border:rgba(255,79,184,.28);--text:#f7eefc;--muted:#b9a8d6;--ok:#3ddc97;--bad:#ff6b8b;--warn:#ffc857}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font-family:'Outfit',system-ui,sans-serif;color:var(--text);background:var(--bg) center/cover fixed no-repeat;line-height:1.55;min-height:100vh}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 50% -5%,rgba(255,79,184,.26),transparent 55%),radial-gradient(ellipse at 90% 100%,rgba(139,92,246,.22),transparent 50%),linear-gradient(rgba(20,9,42,.66),rgba(20,9,42,.92))}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--pink2);outline-offset:2px}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(20,9,42,.72);border-bottom:1px solid var(--border);padding-top:env(safe-area-inset-top,0)}
+.top .in{max-width:1180px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0}
+.logo{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--pink);box-shadow:0 0 22px rgba(255,79,184,.5);flex:none}
+.eyebrow{display:block;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pink2);font-weight:600}
+.brand b{font-family:'Syne',sans-serif;font-weight:800;font-size:1.05rem;line-height:1.1;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sp{flex:1}
+.btn{display:inline-block;text-decoration:none;border:1px solid var(--border);background:rgba(30,16,56,.85);border-radius:10px;padding:8px 14px;font-weight:500;font-size:.9rem;transition:.15s;white-space:nowrap}
+.btn:hover{border-color:var(--pink)}
+
+/* layout */
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 18px 80px;display:grid;grid-template-columns:210px minmax(0,1fr);gap:36px}
+.rail{position:sticky;top:84px;align-self:start;padding-top:34px;display:flex;flex-direction:column;gap:2px}
+.rail a{display:block;text-decoration:none;color:var(--muted);padding:7px 12px;border-radius:10px;font-size:.92rem;border-left:2px solid transparent;transition:.15s}
+.rail a:hover{color:var(--text)}
+.rail a.on{color:var(--text);background:rgba(255,79,184,.1);border-left-color:var(--pink)}
+.rail small{display:block;color:var(--muted);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;margin:14px 12px 4px}
+main{padding-top:34px;min-width:0}
+
+/* hero */
+.hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,5vw,3.4rem);line-height:1.04;max-width:16ch}
+.hero h1 em{font-style:normal;color:var(--pink)}
+.hero p{color:var(--muted);font-size:1.1rem;max-width:52ch;margin:14px 0 22px}
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.pillar{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px 14px;backdrop-filter:blur(12px)}
+.pillar b{font-family:'Syne',sans-serif;font-size:1.05rem;display:block}
+.pillar span{color:var(--muted);font-size:.84rem}
+
+section{margin-top:64px}
+h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.4rem,3vw,1.9rem);line-height:1.15}
+.lede{color:var(--muted);margin:6px 0 20px;max-width:62ch}
+h3{font-family:'Syne',sans-serif;font-size:1.05rem;margin-bottom:6px}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:20px 22px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.panel+.panel{margin-top:14px}
+.muted{color:var(--muted)}
+.note{display:flex;gap:10px;align-items:flex-start;margin-top:14px;padding:12px 14px;border-radius:12px;border:1px solid rgba(139,92,246,.5);background:linear-gradient(135deg,rgba(139,92,246,.16),rgba(10,4,24,.4));font-size:.95rem}
+.note.red{border-color:rgba(255,107,139,.5);background:linear-gradient(135deg,rgba(255,107,139,.12),rgba(10,4,24,.4))}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{padding:2px 11px;border-radius:999px;border:1px solid var(--border);font-size:.8rem;font-weight:500;color:var(--pink2);background:rgba(255,79,184,.06)}
+.chip.red{color:var(--bad);border-color:rgba(255,107,139,.55);background:rgba(255,107,139,.07)}
+
+/* the ladder: a real sequence, so it is numbered */
+.ladder{list-style:none;position:relative;display:grid;gap:12px;padding-left:46px}
+.ladder::before{content:"";position:absolute;left:15px;top:12px;bottom:12px;width:3px;border-radius:9px;background:linear-gradient(180deg,var(--violet),var(--pink),var(--bad))}
+.ladder li{position:relative;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:14px 18px;backdrop-filter:blur(12px)}
+.ladder li::before{content:attr(data-n);position:absolute;left:-46px;top:14px;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-family:'Syne',sans-serif;font-weight:800;font-size:.95rem;color:#2a0a22;background:linear-gradient(135deg,var(--pink2),var(--pink));box-shadow:0 0 18px rgba(255,79,184,.5)}
+.ladder li:last-child{border-color:rgba(255,107,139,.55)}
+.ladder b{font-family:'Syne',sans-serif;font-size:1.1rem}
+.ladder p{color:var(--muted);font-size:.95rem}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.tile{border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:12px 14px;background:rgba(10,4,24,.5);position:relative;overflow:hidden}
+.tile::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--violet),var(--pink))}
+.tile small{display:block;color:var(--pink2);font-weight:600;font-size:.78rem}
+.tile b{font-family:'Syne',sans-serif;font-size:1.05rem;line-height:1.25;display:block;margin-top:2px}
+.tile span{color:var(--muted);font-size:.86rem}
+.rows{display:grid;gap:8px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(10,4,24,.5)}
+.row b.r{color:var(--bad);font-weight:600;text-align:right}
+.row b.w{font-weight:600;text-align:right}
+
+.checks{list-style:none;display:grid;gap:10px}
+.checks li{display:flex;gap:10px;align-items:baseline}
+.checks li::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--pink);box-shadow:0 0 8px var(--pink);transform:translateY(-1px)}
+.checks b{font-weight:600}
+
+/* appeal flow */
+.flow{list-style:none;display:grid;grid-template-columns:repeat(6,1fr);gap:8px;counter-reset:f}
+.flow li{counter-increment:f;position:relative;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px 10px;text-align:center;font-size:.85rem;backdrop-filter:blur(12px)}
+.flow li::before{content:counter(f);display:grid;place-items:center;width:24px;height:24px;margin:0 auto 6px;border-radius:50%;font-weight:700;font-size:.78rem;color:#2a0a22;background:linear-gradient(135deg,var(--pink2),var(--pink))}
+.flow b{display:block;font-size:.92rem}
+.flow span{color:var(--muted);font-size:.78rem}
+
+.verdict{border-radius:16px;padding:16px 18px;border:1px solid}
+.verdict.ok{border-color:rgba(61,220,151,.6);background:linear-gradient(135deg,rgba(61,220,151,.1),rgba(10,4,24,.5))}
+.verdict.no{border-color:rgba(255,107,139,.6);background:linear-gradient(135deg,rgba(255,107,139,.1),rgba(10,4,24,.5))}
+.verdict h3{display:flex;align-items:center;gap:8px}
+.verdict.ok h3{color:var(--ok)}.verdict.no h3{color:var(--bad)}
+
+.tpl{border-radius:14px;border:1px solid var(--border);background:rgba(10,4,24,.55);padding:14px 16px;display:grid;gap:8px}
+.tpl.ok{border-color:rgba(61,220,151,.5)}.tpl.no{border-color:rgba(255,107,139,.5)}
+.tpl .h{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.tpl .h b{font-family:'Syne',sans-serif}
+.tpl.ok .h b{color:var(--ok)}.tpl.no .h b{color:var(--bad)}
+.tpl p{color:#eadcf7;white-space:pre-wrap}
+.copy{border:1px solid var(--border);background:rgba(30,16,56,.85);border-radius:999px;padding:5px 14px;font-size:.8rem;font-weight:600;transition:.15s}
+.copy:hover{border-color:var(--pink)}
+.copy.done{border-color:var(--ok);color:var(--ok)}
+
+.closing{margin-top:64px;text-align:center;padding:34px 22px;border-radius:22px;border:1px solid var(--border);background:linear-gradient(135deg,rgba(139,92,246,.22),rgba(255,79,184,.12))}
+.closing h2 span{color:var(--pink)}
+.closing p{color:var(--muted);max-width:52ch;margin:8px auto 0}
+.foot{position:relative;z-index:1;text-align:center;color:var(--muted);font-size:.8rem;padding:0 18px 28px}
+
+
+
+/* strike ladder */
+.strikes{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:14px}
+.strikes li{border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:12px 14px;background:rgba(10,4,24,.5);display:grid;gap:2px;align-content:start}
+.strikes small{color:var(--pink2);font-weight:600;font-size:.78rem}
+.strikes b{font-family:'Syne',sans-serif;font-size:1.1rem;line-height:1.2}
+.strikes li>span:last-child{color:var(--muted);font-size:.85rem}
+.pips{display:flex;gap:5px;margin-bottom:8px}
+.pips i{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--border);background:transparent}
+.pips i.f{background:linear-gradient(135deg,var(--pink2),var(--pink));border-color:var(--pink);box-shadow:0 0 8px rgba(255,79,184,.5)}
+.strikes li.last{border-color:rgba(255,107,139,.6);background:linear-gradient(135deg,rgba(255,107,139,.12),rgba(10,4,24,.5))}
+.strikes li.last b{color:var(--bad)}
+.strikes li.last .pips i.f{background:var(--bad);border-color:var(--bad);box-shadow:0 0 8px rgba(255,107,139,.6)}
+
+/* staff appeal rules */
+.arules{list-style:none;display:grid;gap:10px;counter-reset:ar}
+.arules li{counter-increment:ar;display:grid;grid-template-columns:36px 1fr;gap:0 14px;align-items:start;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:14px 18px;backdrop-filter:blur(12px)}
+.arules li::before{content:counter(ar);grid-row:1/3;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-family:'Syne',sans-serif;font-weight:800;font-size:.9rem;color:#2a0a22;background:linear-gradient(135deg,var(--pink2),var(--pink));box-shadow:0 0 16px rgba(255,79,184,.4)}
+.arules b{font-family:'Syne',sans-serif;font-size:1.02rem;line-height:1.3}
+.arules p{color:var(--muted);font-size:.95rem;overflow-wrap:anywhere}
+.arules p a{color:var(--pink2)}
+.arules li.hot{border-color:rgba(255,107,139,.5)}
+.agree{margin-top:16px;text-align:center;color:var(--muted)}
+.agree b{color:var(--text);font-weight:600}
+
+::-webkit-scrollbar{width:14px;height:14px}
+::-webkit-scrollbar-track{background:rgba(255,255,255,.05);border-radius:99px}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--violet),var(--pink));border-radius:99px;border:3px solid rgba(20,9,42,.9);min-height:48px}
+@supports not selector(::-webkit-scrollbar){*{scrollbar-width:thin;scrollbar-color:var(--pink) rgba(255,255,255,.08)}}
+
+@media(max-width:900px){
+  .wrap{grid-template-columns:1fr;gap:0}
+  .rail{position:sticky;top:61px;z-index:15;flex-direction:row;overflow-x:auto;padding:8px 0;margin:0 -18px;padding-left:18px;padding-right:18px;background:rgba(20,9,42,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);gap:6px}
+  .rail small{display:none}
+  .rail a{white-space:nowrap;border:1px solid var(--border);border-left-width:1px;padding:5px 12px;border-radius:999px;flex:none}
+  .rail a.on{border-color:var(--pink)}
+  main{padding-top:22px}
+  html{scroll-padding-top:130px}
+  .pillars,.grid4{grid-template-columns:repeat(2,1fr)}
+  .flow{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:620px){
+  .grid2,.grid3{grid-template-columns:1fr}
+  .top .btn.hide-s{display:none}
+  .panel{padding:16px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="in">
+    <a class="brand" href="../" title="Back to the staff dashboard">
+      <img class="logo" id="logo" alt="Will Mac logo">
+      <div><span class="eyebrow">Will Mac Community</span><b>Moderation &amp; Appeals Handbook</b></div>
+    </a>
+    <span class="sp"></span>
+    <a class="btn" href="../">Staff dashboard</a>
+    <a class="btn hide-s" href="../../">Home</a>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="rail" id="rail" aria-label="Handbook sections">
+    <small>Moderation</small>
+    <a href="#glance">At a glance</a>
+    <a href="#structure">Punishment levels</a>
+    <a href="#instant">Instant actions</a>
+    <a href="#rules">Staff rules</a>
+    <small>Appeals</small>
+    <a href="#appeals">How appeals work</a>
+    <a href="#decisions">Decisions</a>
+    <a href="#appeal-rules">Staff appeal rules</a>
+    <a href="#templates">Message templates</a>
+    <a href="#evidence">Evidence and tips</a>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <h1>Calm, fair and <em>consistent</em> moderation.</h1>
+      <p>A structured way to moderate the server, and to let people earn a second chance. Version November 2026, staff only.</p>
+      <div class="pillars">
+        <div class="pillar"><b>Calm</b><span>Never punish while mad</span></div>
+        <div class="pillar"><b>Fair</b><span>Start light, give reasons</span></div>
+        <div class="pillar"><b>Consistent</b><span>Same rule, same result</span></div>
+        <div class="pillar"><b>Logged</b><span>Every warning, mute, ban</span></div>
+      </div>
+    </div>
+
+    <section id="glance">
+      <h2>At a glance</h2>
+      <p class="lede">The whole path from first warning to permanent ban. Move one step at a time unless the behavior is on the instant list.</p>
+      <ol class="ladder">
+        <li data-n="1"><b>Verbal warning</b><p>No punishment. Start light.</p></li>
+        <li data-n="2"><b>Formal warning</b><p>Logged. Resets after 7-14 days of good behavior.</p></li>
+        <li data-n="3"><b>Mute</b><p>Spam, toxicity, minor rule breaks.</p>
+          <div class="chips"><span class="chip">10-30 min</span><span class="chip">1-3 h</span><span class="chip">12-24 h</span><span class="chip">2-3 days</span></div></li>
+        <li data-n="4"><b>Kick</b><p>A warning plus removal. They can rejoin.</p>
+          <div class="chips"><span class="chip">Harassment after warnings</span><span class="chip">Ignoring staff</span><span class="chip">Drama</span></div></li>
+        <li data-n="5"><b>Temporary ban</b><p>Serious or repeated behavior.</p>
+          <div class="chips"><span class="chip">1 day</span><span class="chip">3 days</span><span class="chip">7 days</span><span class="chip">14-30 days</span></div></li>
+        <li data-n="6"><b>Permanent ban</b><p>Only for serious stuff.</p>
+          <div class="chips"><span class="chip red">Hate speech</span><span class="chip red">Threats</span><span class="chip red">Raiding</span><span class="chip red">NSFW</span><span class="chip red">Ban evasion</span></div></li>
+      </ol>
+      <div class="panel" style="margin-top:18px">
+        <h3>Before you punish, ask four things</h3>
+        <ul class="checks">
+          <li><span><b>Am I calm?</b> Never punish while mad.</span></li>
+          <li><span><b>Did I check the logs?</b> Facts first.</span></li>
+          <li><span><b>Did I give a reason?</b> Always.</span></li>
+          <li><span><b>Did I log it?</b> Every warning, mute and ban.</span></li>
+        </ul>
+      </div>
+      <div class="note"><span><b>Appeals</b> are open for any punishment. 24 hour wait, one appeal, 2-3 staff vote.</span></div>
+    </section>
+
+    <section id="structure">
+      <h2>Punishment levels</h2>
+      <p class="lede">Start light before jumping to punishments. Escalate step by step, and log every action.</p>
+
+      <div class="panel">
+        <h3>Warnings</h3><p class="muted">The base layer.</p>
+        <div class="grid3" style="margin-top:12px">
+          <div class="tile"><small>1st warning</small><b>Verbal warning</b><span>No punishment</span></div>
+          <div class="tile"><small>2nd warning</small><b>Formal warning</b><span>Logged</span></div>
+          <div class="tile"><small>3rd warning</small><b>Small punishment</b><span>Mute</span></div>
+        </div>
+        <div class="note"><span><b>Reset warnings</b> after about 7-14 days of good behavior. Optional, but fair.</span></div>
+      </div>
+
+      <div class="panel">
+        <h3>Mutes</h3><p class="muted">For spam, toxicity and minor rule breaks.</p>
+        <div class="grid4" style="margin-top:12px">
+          <div class="tile"><small>1st mute</small><b>10-30 minutes</b></div>
+          <div class="tile"><small>2nd mute</small><b>1-3 hours</b></div>
+          <div class="tile"><small>3rd mute</small><b>12-24 hours</b></div>
+          <div class="tile"><small>4th mute</small><b>2-3 days</b></div>
+        </div>
+        <div class="note red"><span>If they keep going, <b>move to a temporary ban.</b></span></div>
+      </div>
+
+      <div class="panel">
+        <h3>Kicks</h3><p class="muted">For mid-level issues or repeated problems. A kick is <b style="color:var(--text)">a warning plus removal</b>. They can rejoin.</p>
+        <div class="chips"><span class="chip">Harassment after warnings</span><span class="chip">Ignoring staff</span><span class="chip">Causing drama</span></div>
+      </div>
+
+      <div class="panel">
+        <h3>Temporary bans</h3><p class="muted">For serious or repeated behavior.</p>
+        <div class="grid4" style="margin-top:12px">
+          <div class="tile"><small>1st temp ban</small><b>1 day</b></div>
+          <div class="tile"><small>2nd temp ban</small><b>3 days</b></div>
+          <div class="tile"><small>3rd temp ban</small><b>7 days</b></div>
+          <div class="tile"><small>4th temp ban</small><b>14-30 days</b></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Permanent bans</h3><p class="muted">Only for serious stuff.</p>
+        <div class="chips"><span class="chip red">Hate speech</span><span class="chip red">Threats</span><span class="chip red">Raiding</span><span class="chip red">NSFW</span><span class="chip red">Ban evasion</span></div>
+      </div>
+
+      <div class="panel" style="margin-top:14px">
+        <h3>Strike system</h3>
+        <p class="muted">An optional alternative to warnings. Every strike is logged, and the fifth is the last.</p>
+        <ol class="strikes">
+          <li><span class="pips" aria-hidden="true"><i class="f"></i><i></i><i></i><i></i><i></i></span><small>1 strike</small><b>Warning</b><span>Talk to them. Nothing else yet.</span></li>
+          <li><span class="pips" aria-hidden="true"><i class="f"></i><i class="f"></i><i></i><i></i><i></i></span><small>2 strikes</small><b>Short mute</b><span>10 min to 3 hours.</span></li>
+          <li><span class="pips" aria-hidden="true"><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i></span><small>3 strikes</small><b>Long mute</b><span>12 hours to 3 days.</span></li>
+          <li><span class="pips" aria-hidden="true"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i></span><small>4 strikes</small><b>Kick</b><span>Final warning. They can rejoin.</span></li>
+          <li class="last"><span class="pips" aria-hidden="true"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span><small>5 strikes</small><b>Ban</b><span>The end of the line.</span></li>
+        </ol>
+        <div class="note"><span><b>Instant actions skip strikes.</b> Raiding, doxxing and spam bots are banned straight away, and extreme harassment is a temp or perma ban.</span></div>
+      </div>
+
+      <div class="panel">
+        <h3>Log everything</h3>
+        <p class="muted">Log every <b style="color:var(--text)">warning, strike, mute, kick and ban</b>. It helps staff stay consistent and gives appeals a record to check.</p>
+      </div>
+    </section>
+
+    <section id="instant">
+      <h2>Instant actions</h2>
+      <p class="lede">Some behavior skips the warnings completely.</p>
+      <div class="panel"><div class="rows">
+        <div class="row"><span>Raiding</span><b class="r">Instant ban</b></div>
+        <div class="row"><span>Doxxing</span><b class="r">Instant ban</b></div>
+        <div class="row"><span>Spam bots</span><b class="r">Instant ban</b></div>
+        <div class="row"><span>Extreme harassment</span><b class="r">Temp or perma ban</b></div>
+      </div></div>
+    </section>
+
+    <section id="rules">
+      <h2>Staff rules</h2>
+      <p class="lede">Very important. These come before any punishment.</p>
+      <div class="grid4">
+        <div class="tile"><b>No abusing power</b><span>Permissions are for the community, never for personal use.</span></div>
+        <div class="tile"><b>Always give a reason</b><span>Every action has a clear, short reason in the log.</span></div>
+        <div class="tile"><b>Stay calm</b><span>Don’t punish while mad. Step away, then decide.</span></div>
+        <div class="tile"><b>Be consistent</b><span>Same behavior, same result, for everyone.</span></div>
+      </div>
+    </section>
+
+    <section id="appeals">
+      <h2>How appeals work</h2>
+      <p class="lede">Anyone can appeal a punishment: ban, mute, kick or warning. A panel votes. Nobody decides alone.</p>
+      <ol class="flow">
+        <li><b>Punished</b><span>Ban, mute, kick or warning</span></li>
+        <li><b>Wait 24h</b><span>Cool-off period</span></li>
+        <li><b>Appeal sent</b><span>Website form</span></li>
+        <li><b>2-3 staff review</b><span>Check the evidence</span></li>
+        <li><b>Vote</b><span>Accept or deny</span></li>
+        <li><b>Decision</b><span>Message sent</span></li>
+      </ol>
+      <div class="grid3" style="margin-top:14px">
+        <div class="panel" style="margin:0"><h3 style="color:var(--pink2)">Wait 24 hours</h3><p class="muted">At least 24 hours must pass after the punishment.</p></div>
+        <div class="panel" style="margin:0"><h3 style="color:var(--pink2)">Only one appeal</h3><p class="muted">One appeal at a time. No duplicates.</p></div>
+        <div class="panel" style="margin:0"><h3 style="color:var(--pink2)">Be respectful</h3><p class="muted">No insults. Insults mean an <b style="color:var(--bad)">instant denial</b>.</p></div>
+      </div>
+      <div class="panel" style="margin-top:14px">
+        <h3>What every appeal answers</h3>
+        <ol class="checks" style="list-style:none;margin-top:8px;counter-reset:q">
+          <li><span>Discord username + ID</span></li>
+          <li><span>What were you punished for?</span></li>
+          <li><span>Do you understand what you did wrong?</span></li>
+          <li><span>Why should it be lifted?</span></li>
+          <li><span>What will you do differently?</span></li>
+          <li><span>Anything else you want to add? <span class="muted">(optional)</span></span></li>
+        </ol>
+        <p class="muted" style="margin-top:12px;font-size:.9rem">Appeal page to share with members: <a href="https://voqcl.com/willmacgta/appeal/" target="_blank" rel="noopener" style="color:var(--pink2)">voqcl.com/willmacgta/appeal</a></p>
+      </div>
+    </section>
+
+    <section id="decisions">
+      <h2>Decisions</h2>
+      <p class="lede">How staff review an appeal and what happens next.</p>
+      <div class="panel">
+        <h3>Staff review</h3>
+        <ul class="checks">
+          <li><span><b>2-3 staff members</b> review every appeal.</span></li>
+          <li><span>The person who issued the punishment <b>never decides alone</b>.</span></li>
+          <li><span>They should recuse themselves from the vote.</span></li>
+        </ul>
+      </div>
+      <div class="grid2" style="margin-top:14px">
+        <div class="verdict ok">
+          <h3>Accepted</h3>
+          <ul class="checks">
+            <li><span>Punishment is <b>lifted</b> (unbanned if it was a ban).</span></li>
+            <li><span>Put them on <b>probation</b> for 1-2 weeks.</span></li>
+            <li><span>Any rule break during probation means an <b>instant ban</b>.</span></li>
+          </ul>
+        </div>
+        <div class="verdict no">
+          <h3>Denied</h3>
+          <ul class="checks">
+            <li><span>Send a <b>short reason</b>, like “Appeal denied due to lack of accountability.”</span></li>
+            <li><span>Optional: allow a retry after <b>7-14 days</b>.</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="panel" style="margin-top:14px">
+        <h3>Auto-deny cases</h3><p class="muted">Don’t even consider appeals for these.</p>
+        <div class="chips"><span class="chip red">Raiding</span><span class="chip red">Doxxing</span><span class="chip red">Threats</span><span class="chip red">Hate speech</span></div>
+      </div>
+    </section>
+
+    <section id="appeal-rules">
+      <h2>Appeal rules for staff</h2>
+      <p class="lede">How to handle an appeal from the moment someone asks about it to the final decision.</p>
+      <ol class="arules">
+        <li><b>Point members to the appeal page.</b><p>Don’t debate punishments in chat or DMs. Send them here instead: <a href="https://voqcl.com/willmacgta/appeal/" target="_blank" rel="noopener">https://voqcl.com/willmacgta/appeal/</a></p></li>
+        <li><b>Keep appeals out of DMs.</b><p>Never discuss an appeal privately with the member.</p></li>
+        <li><b>Don’t judge your own punishments.</b><p>If you issued it, leave the appeal to another staff member.</p></li>
+        <li><b>Check their history first.</b><p>Use Load from Discord via ViceGuard and User Lookup before making a decision.</p></li>
+        <li><b>Give a clear reason.</b><p>A reason is required, and members can see final reasons. “No” or “ok” doesn’t count.</p></li>
+        <li><b>Ask instead of guessing.</b><p>Missing details? Use Ask for more info. The member gets a DM and can reply on the appeal page.</p></li>
+        <li class="hot"><b>Escalate serious cases.</b><p>Threats, doxxing, NSFW, raids, alt accounts or anything you’re unsure about should go to the admins.</p></li>
+        <li><b>Keep notes private.</b><p>Members never see staff notes. Don’t share dashboard screenshots outside the staff team.</p></li>
+        <li><b>Stay active.</b><p>Going to be away? Let @voqcl know.</p></li>
+        <li><b>Protect your account.</b><p>Turn on 2-Factor Authentication and never share your login. If your account is compromised, tell a Mac Lead right away.</p></li>
+      </ol>
+      <div class="panel" style="margin-top:14px">
+        <h3>Good to know</h3>
+        <ul class="checks">
+          <li><span>Members can only have <b>one open appeal</b> at a time. If denied, they must wait <b>7 days</b> before appealing again.</span></li>
+          <li><span>@ViceGuard can only DM members who share a server with it. If a DM fails, the dashboard will show it, and the result still appears on their appeal page.</span></li>
+          <li><span>If an unban or timeout removal fails, an admin can press <b>Retry</b>. It never applies the action twice.</span></li>
+        </ul>
+      </div>
+      <p class="agree"><b>By keeping your staff role, you agree to follow these rules.</b> Keep the community strong.</p>
+    </section>
+
+    <section id="templates">
+      <h2>Message templates</h2>
+      <p class="lede">Copy these into the decision message. They match what the dashboard sends.</p>
+      <div class="rows" style="gap:12px">
+        <div class="tpl ok"><div class="h"><b>Accepted</b><button class="copy" type="button" data-t="accepted">Copy</button></div><p id="t-accepted"></p></div>
+        <div class="tpl no"><div class="h"><b>Denied</b><button class="copy" type="button" data-t="denied">Copy</button></div><p id="t-denied"></p></div>
+        <div class="tpl no"><div class="h"><b>Auto-denied</b><button class="copy" type="button" data-t="autoDenied">Copy</button></div><p id="t-autoDenied"></p></div>
+      </div>
+    </section>
+
+    <section id="evidence">
+      <h2>Evidence and tips</h2>
+      <p class="lede">Make every decision on facts, and help users write a good appeal.</p>
+      <div class="panel">
+        <h3>Staff should always</h3>
+        <div class="grid3" style="margin-top:10px">
+          <div class="tile"><b>Check logs</b><span>Look at the full moderation history.</span></div>
+          <div class="tile"><b>Check screenshots</b><span>Review any proof that was saved.</span></div>
+          <div class="tile"><b>Check context</b><span>What happened before and after.</span></div>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Appeal tips for users</h3><p class="muted">You can show these to anyone who asks.</p>
+        <div class="grid3" style="margin-top:10px">
+          <div class="tile"><b>Be honest</b><span>Staff check the logs. The truth always shows.</span></div>
+          <div class="tile"><b>Take responsibility</b><span>Say what you did, plainly.</span></div>
+          <div class="tile"><b>Don’t blame others</b><span>Not the mods, not the rules.</span></div>
+        </div>
+        <div class="note"><span>Most people mess this up by <b>being too emotional</b>. Stay calm and stay specific.</span></div>
+      </div>
+    </section>
+
+    <div class="closing">
+      <h2>A good appeal system is <span>calm, fair and structured.</span></h2>
+      <p>Start light. Give reasons. Log everything. Vote together. Treat every appeal the same way.</p>
+    </div>
+  </main>
+</div>
+<div class="foot">Calm. Fair. Consistent.</div>
+
+<script src="../../config.js"></script>
+<script>
+(function () {
+  var C = window.WM_CONFIG || {};
+  var $ = function (s) { return document.querySelector(s); };
+  if (C.background) document.body.style.backgroundImage = 'url("' + C.background + '")';
+  if (C.logo) $("#logo").src = C.logo;
+
+  /* Appeal messages come from config.js so this page never drifts from the dashboard */
+  var fallback = {
+    accepted: "Your appeal has been accepted. Your punishment will be lifted, but you'll be on probation. Any further rule breaks may result in a harsher punishment or a permanent ban.",
+    denied: "Your appeal has been denied. You may reapply in 1 day if applicable.",
+    autoDenied: "Your appeal has been denied. Punishments for raiding, doxxing, threats and hate speech are not eligible for appeal."
+  };
+  var ap = ((C.types || []).filter(function (t) { return t.id === "appeal"; })[0] || {}).responses || {};
+  Object.keys(fallback).forEach(function (k) { $("#t-" + k).textContent = ap[k] || fallback[k]; });
+
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest(".copy"); if (!b) return;
+    var txt = $("#t-" + b.dataset.t).textContent;
+    var ok = function () { b.textContent = "Copied"; b.classList.add("done"); setTimeout(function () { b.textContent = "Copy"; b.classList.remove("done"); }, 1600); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok, function () {});
+    else { var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t); t.select(); try { document.execCommand("copy"); ok(); } catch (x) {} t.remove(); }
+  });
+
+  /* highlight the section being read */
+  var links = [].slice.call(document.querySelectorAll("#rail a"));
+  var map = {}; links.forEach(function (a) { map[a.getAttribute("href").slice(1)] = a; });
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) { a.classList.remove("on"); });
+        var a = map[en.target.id]; if (a) { a.classList.add("on"); if (matchMedia("(max-width:900px)").matches) a.scrollIntoView({ inline: "center", block: "nearest" }); }
+      });
+    }, { rootMargin: "-20% 0px -70% 0px" });
+    Object.keys(map).forEach(function (id) { var s = document.getElementById(id); if (s) io.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
