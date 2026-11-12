@@ -627,15 +627,28 @@ begin
 end $$;
 
 -- Staff (any role) can read it, same as list_applications.
+-- People whose join date was never recorded still get their name and profile picture, taken from the
+-- Discord login itself (auth.identities, which they can't edit). Join date needs their Discord token,
+-- so it appears once they log in again.
 drop function if exists public.list_member_info(text);
 create or replace function public.list_member_info(staff_key text)
 returns table (discord_id text, joined_at timestamptz, nick text, boosting_since timestamptz,
                username text, global_name text, avatar_url text)
-language sql stable security definer set search_path = public
+language sql stable security definer set search_path = public, auth
 as $$
   select m.discord_id, m.joined_at, m.nick, m.boosting_since, m.username, m.global_name, m.avatar_url
   from public.member_info m
   where public.staff_role(staff_key) is not null
+  union all
+  select i.provider_id, null::timestamptz, null::text, null::timestamptz,
+         left(i.identity_data->>'name', 60),
+         left(nullif(i.identity_data->'custom_claims'->>'global_name', ''), 60),
+         case when (i.identity_data->>'avatar_url') like 'https://cdn.discordapp.com/%' then i.identity_data->>'avatar_url' end
+  from auth.identities i
+  where public.staff_role(staff_key) is not null
+    and i.provider = 'discord'
+    and i.provider_id in (select a.discord_id from public.applications a where a.discord_id is not null)
+    and not exists (select 1 from public.member_info m2 where m2.discord_id = i.provider_id)
 $$;
 
 revoke all on function public.record_member_info(text) from public, anon;
