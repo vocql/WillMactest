@@ -409,12 +409,11 @@ async function setFromParams(p) {
   if (p.error || !p.access_token) throw new Error(p.error_description || p.error || "Login failed");
   const exp = p.expires_at ? +p.expires_at * 1000 : Date.now() + (+p.expires_in || 3600) * 1000;
   const u = await fetchUser(p.access_token);
-  session = { access_token: p.access_token, refresh_token: p.refresh_token || "", expires_at: exp, ...u };
+  session = { access_token: p.access_token, refresh_token: p.refresh_token || "", expires_at: exp, provider_token: p.provider_token || "", recorded: false, ...u };
   saveSession(); renderAcct();
   if (p.provider_token) {
     checkStaff(p.provider_token, p.access_token);
-    // Save profile + join date so staff can see it on the dashboard (checked by the database, can't be faked).
-    fetch(SB + "/rest/v1/rpc/record_member_info", { method: "POST", headers: authHdr(p.access_token), body: JSON.stringify({ p_token: p.provider_token }), cache: "no-store" }).catch(() => {});
+    recordMember();   // saves profile + join date so staff can see it on the dashboard (checked by the database, can't be faked)
   }
 }
 
@@ -452,6 +451,27 @@ async function getToken() {
     session.expires_at = t.expires_at ? t.expires_at * 1000 : Date.now() + (t.expires_in || 3600) * 1000;
     saveSession(); return session.access_token;
   } catch (e) { signOut(); return null; }
+}
+
+/* Ask the database to save this person's Discord profile + server join date. Needs the Discord token from login,
+   so we keep it in the session and retry until it works (login, page load, and right before submitting). */
+let recording = null;
+function recordMember() {
+  if (!session || !session.provider_token || session.recorded) return Promise.resolve(false);
+  if (recording) return recording;
+  recording = (async () => {
+    try {
+      const tok = await getToken(); if (!tok || !session) return false;
+      const r = await fetch(SB + "/rest/v1/rpc/record_member_info", { method: "POST", headers: authHdr(tok), body: JSON.stringify({ p_token: session.provider_token }), cache: "no-store" });
+      const j = r.ok ? await r.json() : { error: "http_" + r.status };
+      if (j && j.ok) { session.recorded = true; session.provider_token = ""; saveSession(); return true; }
+      console.warn("record_member_info:", j);
+      // token is dead or wrong: stop retrying, they need to log in again
+      if (j && (j.error === "bad_token" || j.error === "mismatch" || j.error === "not_in_server")) { session.provider_token = ""; saveSession(); }
+    } catch (e) { console.warn("record_member_info failed", e); }
+    return false;
+  })().finally(() => { recording = null; });
+  return recording;
 }
 
 function authMsg(t, bad) { const m = $("#authTxt"); m.textContent = t; m.classList.toggle("bad", !!bad); }
@@ -555,6 +575,7 @@ $("#mineModal").addEventListener("click", e => { if (e.target.id === "mineModal"
 document.addEventListener("keydown", e => { if (e.key === "Escape") { $("#mineModal").hidden = true; if (!$("#authModal").hidden) closeAuth(); } });
 $("#viewMine").onclick = openMine;
 renderAcct();
+recordMember();
 window.addEventListener("pageshow", e => {   // coming back from the dashboard (or the back button): reload login + redraw
   try { session = JSON.parse(localStorage.getItem(AUTH_KEY) || "null"); } catch (err) {}
   renderAcct();
@@ -701,6 +722,7 @@ const dashboardUrl = () => new URL("applications/", location.href).href;
 async function sendSupabase(answers) {
   const url = (C.supabaseUrl || "").trim().replace(/\/+$/, ""), key = (C.supabaseKey || "").trim();
   if (!url || !key) return null;
+  await recordMember();
   const tok = await getToken(); if (!tok) throw new Error("Your Discord login expired. Please log in again");
   const headers = { apikey: key, Authorization: "Bearer " + tok, "Content-Type": "application/json", Prefer: "return=minimal" };
   const r = await fetch(url + "/rest/v1/applications", { method: "POST", headers, body: JSON.stringify({ discord_name: answers[0].slice(0, 100), type: cur.id, answers }) });
