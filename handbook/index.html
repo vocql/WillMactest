@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Will Mac | Staff Handbook</title>
+<meta name="theme-color" content="#14092a">
+<link rel="icon" href="https://images.guns.lol/637041cec591a6ab27615f0e2db44d08f3ce0c55/p6IK2p.webp">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#ff4fb8;--pink2:#ff8fd4;--violet:#8b5cf6;--bg:#14092a;--card:rgba(22,10,44,.85);--border:rgba(255,79,184,.28);--text:#f7eefc;--muted:#b9a8d6;--ok:#3ddc97;--bad:#ff6b8b;--warn:#ffc857;--bar:56px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.6;min-height:100vh;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 50% 0,rgba(255,79,184,.2),transparent 55%),radial-gradient(ellipse at 100% 100%,rgba(139,92,246,.18),transparent 50%)}
+button{font:inherit;color:inherit;cursor:pointer;border:1px solid var(--border);background:rgba(30,16,56,.9);border-radius:10px;padding:8px 14px;font-weight:500;transition:.15s}
+button:hover{border-color:var(--pink);background:rgba(255,79,184,.15)}
+a{color:var(--pink2)}
+/* navbar: fixed height, never wraps */
+.bar{position:fixed;top:0;left:0;right:0;z-index:50;height:calc(var(--bar) + env(safe-area-inset-top,0px));padding:env(safe-area-inset-top,0px) 12px 0;display:flex;align-items:center;gap:10px;flex-wrap:nowrap;background:rgba(20,9,42,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.bar img{width:34px;height:34px;border-radius:50%;flex:none;border:1px solid var(--border)}
+.ttl{flex:1;min-width:0;font-family:Syne,sans-serif;font-weight:800;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ttl small{display:block;font:600 10px Outfit,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--pink2)}
+.bar .btn{flex:none;white-space:nowrap;padding:7px 12px;font-size:14px}
+#menuBtn{display:none}
+.wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:calc(var(--bar) + env(safe-area-inset-top,0px) + 16px) 14px calc(90px + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:250px 1fr;gap:18px}
+.side{position:sticky;top:calc(var(--bar) + 16px);align-self:start;max-height:calc(100vh - var(--bar) - 32px);overflow:auto;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:8px}
+.side button{display:flex;gap:10px;width:100%;text-align:left;border:0;background:none;padding:9px 10px;border-radius:10px;color:var(--muted);font-size:14.5px}
+.side button b{flex:none;width:22px;color:var(--pink2);font-family:Syne,sans-serif}
+.side button.on{background:linear-gradient(90deg,rgba(255,79,184,.28),rgba(139,92,246,.2));color:#fff}
+main{min-width:0;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px 22px 26px}
+.pg{font:600 11px Outfit;letter-spacing:.14em;text-transform:uppercase;color:var(--pink2)}
+h1{font-family:Syne,sans-serif;font-size:28px;line-height:1.15;margin:4px 0 14px}
+h2{font-family:Syne,sans-serif;font-size:17px;margin:20px 0 8px;color:var(--pink2)}
+p,li{color:#e6d8f5;font-size:15.5px}p{margin:8px 0}
+ul,ol{padding-left:22px;margin:8px 0}li{margin:5px 0}
+.box{border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:12px 0;background:rgba(255,79,184,.07)}
+.box.warn{border-color:rgba(255,200,87,.5);background:rgba(255,200,87,.07)}
+.box.bad{border-color:rgba(255,107,139,.5);background:rgba(255,107,139,.08)}
+.box b.h{display:block;margin-bottom:2px}
+.tbl{overflow-x:auto;margin:12px 0;border:1px solid var(--border);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:14.5px}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid rgba(255,79,184,.15);vertical-align:top}
+th{color:var(--pink2);font-size:12px;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,79,184,.08)}
+tr:last-child td{border-bottom:0}
+.y{color:var(--ok);font-weight:600}.n{color:var(--bad)}
+.steps{counter-reset:s;list-style:none;padding:0}
+.steps li{counter-increment:s;position:relative;padding:4px 0 4px 40px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:3px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:13px;background:linear-gradient(135deg,var(--pink),var(--violet));color:#fff}
+.rule{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,79,184,.14)}
+.rule i{flex:none;font-style:normal;font-family:Syne,sans-serif;font-weight:800;color:var(--pink);width:26px}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin:10px 0;padding-bottom:4px}
+.tabs button{flex:none;white-space:nowrap;font-size:14px;padding:7px 12px}
+.tabs button.on{background:var(--pink);border-color:var(--pink);color:#1a0830;font-weight:600}
+.pre{border:1px solid var(--border);border-radius:12px;padding:12px;margin:10px 0;background:rgba(10,4,24,.5)}
+.pre strong{display:block;font-size:14px;color:var(--pink2);margin-bottom:4px}
+.pre p{margin:0 0 8px;font-size:14.5px}
+.pre button{font-size:13px;padding:5px 12px}
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;gap:10px;align-items:center;justify-content:center;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));background:rgba(20,9,42,.94);backdrop-filter:blur(10px);border-top:1px solid var(--border)}
+.nav button{flex:1;max-width:260px}.nav span{flex:none;color:var(--muted);font-size:13px}
+.nav .pri{background:linear-gradient(135deg,var(--pink),var(--violet));border:0;color:#fff;font-weight:600}
+.nav button:disabled{opacity:.35;cursor:default}
+.toast{position:fixed;left:50%;bottom:calc(76px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ok);color:#06240f;padding:8px 16px;border-radius:99px;font-weight:600;font-size:14px;opacity:0;pointer-events:none;transition:.2s;z-index:80}
+.toast.show{opacity:1}
+.scrim{display:none}
+.embed .bar img,.embed #dashBtn{display:none!important}
+.embed .bar{padding-top:0;height:var(--bar)}.embed .wrap{padding-top:calc(var(--bar) + 14px)}
+#closeBtn[hidden]{display:none}
+@media(max-width:820px){
+ .wrap{grid-template-columns:1fr;padding-left:10px;padding-right:10px}
+ #menuBtn{display:block}
+ .side{position:fixed;z-index:70;top:calc(var(--bar) + env(safe-area-inset-top,0px));left:0;right:0;max-height:calc(100vh - var(--bar) - 80px);border-radius:0 0 16px 16px;display:none;background:#1a0c36}
+ .side.open{display:block}.side.open+.scrim,.scrim.open{display:block;position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.55)}
+ main{padding:16px 14px 20px;border-radius:14px}
+ h1{font-size:23px}
+ .bar .hide{display:none}
+}
+</style>
+</head>
+<body>
+<header class="bar">
+  <img src="https://images.guns.lol/637041cec591a6ab27615f0e2db44d08f3ce0c55/p6IK2p.webp" alt="">
+  <div class="ttl"><small>Will Mac Community</small>Staff Handbook</div>
+  <button class="btn" id="menuBtn" type="button">Pages ☰</button>
+  <button class="btn hide" id="dashBtn" type="button" onclick="location.href='../applications/'">Dashboard</button>
+  <button class="btn" id="closeBtn" type="button" hidden>✕ Close</button>
+</header>
+<div class="wrap">
+  <nav class="side" id="side"></nav><div class="scrim" id="scrim"></div>
+  <main id="main"></main>
+</div>
+<div class="nav">
+  <button type="button" id="prev">← Back</button><span id="cnt"></span><button type="button" class="pri" id="next">Next →</button>
+</div>
+<div class="toast" id="toast">Copied!</div>
+<script>
+/* ===== EDIT ME: message presets (also copy these into the dashboard templates) ===== */
+var PRESETS={
+ "Appeal: accept":[
+  ["Accepted","Hi {name}, thanks for your patience. After reviewing your appeal and your history, we’ve decided to lift your punishment. You’re now on probation for 1–2 weeks, so please re-read the rules. Any rule break during probation means an instant ban."],
+  ["Accepted (reduced)","Hi {name}, we reviewed your appeal and agree the punishment was harsher than it needed to be, so we’ve reduced it. Thank you for being honest and calm. Please keep the rules in mind going forward."]],
+ "Appeal: deny":[
+  ["Denied (standard)","Hi {name}, thanks for appealing. We checked the logs, evidence and your history, and we’re upholding the punishment. You can appeal again after 7 days if you have new information."],
+  ["Denied (no accountability)","Hi {name}, we’ve decided to keep the punishment. Your appeal didn’t show that you understand what went wrong or what will change. You can appeal again after 7 days; please be specific next time."],
+  ["Denied (severe)","Hi {name}, this punishment is for a serious rule break and the decision is final. We won’t be accepting further appeals for it."]],
+ "Appeal: more info":[
+  ["Need more details","Hi {name}, thanks for your appeal. We need a bit more detail before we can decide: please explain what happened in your own words, and what you’ll do differently. Reply on your appeal page."],
+  ["Need evidence","Hi {name}, can you share any screenshots, links or context that support your side? Reply on your appeal page and we’ll continue the review."]],
+ "Applications":[
+  ["Approved","Congratulations {name}! Your application has been approved. Check your DMs for next steps. Welcome to the team, and please read the Staff Handbook first."],
+  ["Interview","Hi {name}, you’ve been shortlisted! We’d like to do a short interview. Please keep your DMs open and reply with your availability and timezone."],
+  ["Denied (general)","Hi {name}, thank you for applying. After careful review we’ve decided not to move forward this time. Spots are limited, and you’re welcome to apply again later."],
+  ["Denied (answers too short)","Hi {name}, thanks for applying. Your answers were too short for us to judge you properly. You’re welcome to apply again with more detailed, specific answers."],
+  ["Denied (too new)","Hi {name}, thanks for applying. We need members who have been around longer and know how the server runs. Please apply again once you’ve been here a bit longer."],
+  ["On hold","Hi {name}, your application is on hold while we finish reviewing others. You don’t need to do anything; we’ll update you soon."]]
+};
+var P=[
+{id:"welcome",t:"Welcome",h:`
+<p>This handbook is the single source of truth for Will Mac Community staff. Read it fully before you take any action, and come back whenever you’re unsure.</p>
+<div class="box"><b class="h">🌴 Our role</b>To protect the community and make it a better place.</div>
+<h2>How to use it</h2>
+<ul><li>Use <b>Pages</b> (top bar on phones) or the sidebar to jump around.</li><li>Use <b>Back / Next</b> at the bottom to read in order.</li><li>The <b>Message presets</b> page has copy-ready replies for appeals and applications.</li></ul>
+<h2>Quick links</h2>
+<ul><li>Appeal page for members: <a href="https://voqcl.com/willmacgta/appeal/">voqcl.com/willmacgta/appeal</a></li><li>Staff dashboard: <a href="../applications/">/applications/</a></li></ul>
+<div class="box warn"><b class="h">Unsure? Ask.</b>A second opinion is always better than a wrong action. Ping a Lead or Admin.</div>`},
+{id:"rules",t:"Staff Rules",h:`
+<p>These 14 rules apply to every staff member, including the owner.</p>
+<div id="rl"></div>
+<div class="box">By keeping your staff role, you agree to follow these rules.</div>`},
+{id:"roles",t:"Roles & permissions",h:`
+<p>What each role may do. Never use a permission you weren’t given. If you need something done, ask the next role up.</p>
+<div class="tbl"><table><tr><th>Action</th><th>Mod</th><th>Lead</th><th>Admin</th></tr>
+<tr><td>Delete messages, warn</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td></tr>
+<tr><td>Timeout (up to 24h)</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td></tr>
+<tr><td>Timeout (over 24h), kick</td><td class="n">Ask Lead</td><td class="y">Yes</td><td class="y">Yes</td></tr>
+<tr><td>Ban</td><td class="n">Ask Lead</td><td class="y">Yes</td><td class="y">Yes</td></tr>
+<tr><td>Review appeals (not your own)</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td></tr>
+<tr><td>Review applications</td><td class="n">View only</td><td class="y">Yes</td><td class="y">Yes</td></tr>
+<tr><td>Open/close applications, retry failed actions</td><td class="n">No</td><td class="n">No</td><td class="y">Yes</td></tr>
+<tr><td>Manage staff, access, roles</td><td class="n">No</td><td class="n">No</td><td class="y">Yes</td></tr></table></div>
+<div class="box warn"><b class="h">Editable defaults</b>Adjust this table to match your real permissions before sharing it.</div>
+<h2>Who handles what</h2>
+<ul><li><b>Moderators</b> watch chat, handle reports and issue light punishments.</li><li><b>Lead Moderators</b> guide mods, approve bigger actions and review appeals.</li><li><b>Admins</b> run the dashboard, settings, serious cases and staff changes.</li></ul>`},
+{id:"strikes",t:"4-strike system",h:`
+<p>Strikes keep punishments fair and consistent. Always check the member’s history first, then pick the next step.</p>
+<div class="tbl"><table><tr><th>Strike</th><th>Action</th><th>Notes</th></tr>
+<tr><td><b>1</b></td><td>Verbal or written warning</td><td>Explain the rule that was broken.</td></tr>
+<tr><td><b>2</b></td><td>Timeout, 1 to 24 hours</td><td>Log evidence.</td></tr>
+<tr><td><b>3</b></td><td>Timeout up to 7 days or kick</td><td>Lead approval for 3+ days.</td></tr>
+<tr><td><b>4</b></td><td>Permanent ban</td><td>Lead or Admin issues it.</td></tr></table></div>
+<h2>Rules of strikes</h2>
+<ul><li>Strikes are logged with a reason and evidence every time.</li><li>Strikes 1 and 2 may expire after 30 clean days at staff discretion; strikes 3 and 4 never expire.</li><li>Match the punishment to the behaviour. A small first mistake is not a timeout.</li><li>Staff may skip steps for serious behaviour (next page).</li></ul>`},
+{id:"severe",t:"Instant bans",h:`
+<p>These skip the strike ladder. Act fast, collect evidence, then tell an Admin.</p>
+<div class="box bad"><b class="h">Instant ban</b><ul><li>Raiding or coordinated spam</li><li>Doxxing or sharing private information</li><li>Threats of violence or self-harm used to harass</li><li>Hate speech, slurs, targeted harassment</li><li>NSFW or illegal content, scams, malicious links</li><li>Ban evasion or alt accounts to dodge punishment</li></ul></div>
+<h2>Steps</h2>
+<ol class="steps"><li>Remove the content and stop the spread.</li><li>Screenshot messages, IDs and timestamps before banning.</li><li>Ban, then post the case in the staff channel.</li><li>Escalate threats, doxxing and raids to the Admins immediately.</li></ol>
+<p>Appeals for these are reviewed by an Admin only and may be auto-denied.</p>`},
+{id:"reports",t:"Reports & evidence",h:`
+<h2>Handling a report</h2>
+<ol class="steps"><li>Read the report and acknowledge it in a reasonable time.</li><li>Check messages, screenshots and surrounding context.</li><li>Look up the member’s history for earlier strikes.</li><li>Decide using the strike ladder, then log your action.</li><li>Reply to the reporter if it’s appropriate. Never share who else was involved.</li></ol>
+<h2>Good evidence</h2>
+<ul><li>Full screenshots with name, date and channel visible</li><li>Message links and user IDs</li><li>Notes on what was said before and after</li></ul>
+<div class="box warn"><b class="h">Never</b>Claim to have seen evidence you haven’t, or act on a report involving you. Hand it to another moderator.</div>`},
+{id:"actions",t:"Moderation how-to",h:`
+<h2>Warn</h2><p>Use for first-time or minor issues. Name the rule, keep it calm, log it.</p>
+<h2>Timeout</h2><p>Use when someone needs a cool-down. Choose the shortest length that works and give a reason.</p>
+<h2>Kick</h2><p>Removes the member but they can rejoin. Use for repeated issues where a ban is too much.</p>
+<h2>Ban</h2><p>For strike 4 or instant-ban behaviour. Always include evidence in the log.</p>
+<h2>Every action needs</h2>
+<ul><li>A clear reason (not “no” or “ok”)</li><li>Evidence or message links</li><li>A log entry so others can see the history</li></ul>
+<div class="box"><b class="h">Fairness check</b>Would you do the same to your best friend? If not, stop and ask someone else.</div>`},
+{id:"appeals",t:"Appeal system",h:`
+<p>Members appeal on the appeal page. A <b>single reviewer</b> makes the decision. There is no staff voting.</p>
+<h2>The flow</h2>
+<ol class="steps"><li>Member sends one appeal on the appeal page.</li><li>Appeal shows up in the dashboard under <b>Appeals</b>.</li><li>One Moderator, Lead or Admin claims it with “I’ll review this”.</li><li>Reviewer checks history, then accepts, denies, asks for more info or escalates.</li><li>The member sees the result and your reason on their appeal page.</li></ol>
+<h2>Appeal rules for staff</h2>
+<ol>
+<li><b>Point members to the appeal page.</b> Don’t debate punishments in chat or DMs.</li>
+<li><b>Keep appeals out of DMs.</b> Never discuss an appeal privately with the member.</li>
+<li><b>Don’t judge your own punishments.</b> If you issued it, another staff member reviews it.</li>
+<li><b>Check history first.</b> Use Load from Discord via ViceGuard and User Lookup.</li>
+<li><b>Give a clear reason.</b> It is required and members can see it.</li>
+<li><b>Ask, don’t guess.</b> Use Ask for more info; the member gets a DM and replies on the appeal page.</li>
+<li><b>Escalate serious cases.</b> Threats, doxxing, NSFW, raids and alts go to the Admins.</li>
+<li><b>Keep notes private.</b> Members never see staff notes or dashboard screenshots.</li>
+<li><b>Stay active.</b> Going away? Tell @voqcl.</li>
+<li><b>Protect your account.</b> Turn on 2FA, never share your login, and tell a Lead at once if it’s compromised.</li></ol>
+<div class="box"><b class="h">Good to know</b><ul><li>One open appeal per member. After a denial they wait 7 days.</li><li>ViceGuard can only DM members sharing a server with it. If a DM fails, the dashboard shows it and the result still appears on their appeal page.</li><li>If an unban or timeout removal fails, an Admin can press Retry. It never applies twice.</li></ul></div>`},
+{id:"review",t:"Reviewing an appeal",h:`
+<h2>Checklist</h2>
+<p>In the dashboard, open the appeal and use the <b>Appeal review</b> box: pick a message preset, edit it, then press <b>Accept appeal</b>, <b>Deny appeal</b>, <b>Ask for more info</b> or <b>Escalate to admin</b>. A reason is required.</p>
+<ol class="steps"><li>Make sure you didn’t issue the punishment (the dashboard blocks you if you did).</li><li>Open the logs and screenshots for the original case.</li><li>Check history and strikes.</li><li>Read the appeal: do they understand what happened and what changes?</li><li>Pick an outcome and write a clear reason.</li></ol>
+<h2>Outcomes</h2>
+<div class="tbl"><table><tr><th>Outcome</th><th>Use when</th></tr>
+<tr><td><b>Accept</b></td><td>Punishment was wrong, or they show real accountability and the offence was minor. Member goes on probation for 1 to 2 weeks.</td></tr>
+<tr><td><b>Deny</b></td><td>Evidence supports the punishment, or the appeal blames others.</td></tr>
+<tr><td><b>Ask for more info</b></td><td>You can’t decide without more detail or evidence.</td></tr>
+<tr><td><b>Escalate</b></td><td>Severe, unclear or involves staff. Ask an Admin.</td></tr></table></div>
+<div class="box warn"><b class="h">Probation</b>Any rule break while on probation means an instant ban.</div>
+<div class="box bad"><b class="h">Conflicts</b>If you know the member or issued the punishment, don’t take the review. Leave it for someone else.</div>`},
+{id:"presets",t:"Message presets",h:`
+<p>Tap <b>Copy</b>, paste it into the decision box, and change anything that needs it. <b>{name}</b> is the member’s name.</p>
+<div class="tabs" id="tabs"></div><div id="pl"></div>`},
+{id:"conduct",t:"Conduct & safety",h:`
+<h2>Be professional</h2>
+<ul><li>Stay calm. Never insult, intimidate or humiliate members.</li><li>Keep moderation talk in staff channels.</li><li>Accept feedback and own your mistakes.</li></ul>
+<h2>Account safety</h2>
+<ul><li>Enable 2-Factor Authentication.</li><li>Never share your login or dashboard screenshots.</li><li>If compromised, tell a Lead right away.</li></ul>
+<h2>Consequences</h2>
+<p>Misconduct may lead to a warning, loss of permissions or removal from staff. Serious abuse may mean immediate removal.</p>
+<h2>Complaints about staff</h2>
+<p>Anyone can report staff, including the owner. Complaints are judged on evidence, not rank, and honest reports are never punished.</p>
+<div class="box">Thank you for keeping the community strong. 🌴</div>`}
+];
+var R=["Fairness|Apply the rules equally to every member, without favouritism toward friends, popular members or staff.","Permissions|Never use moderation tools to threaten, harass or retaliate; every action needs a legitimate reason.","Reports|Take every report seriously and review the messages, screenshots and context before acting.","Harassment|Never ignore repeated targeting or bullying, and protect members who report it from retaliation.","Proportionality|Base punishments on severity and previous offences, and explain them where appropriate.","Hierarchy|Do not overturn another staff member’s decision without valid reason and authority; raise disagreements privately.","Teamwork|Keep moderation discussions in staff channels, share evidence when handing over cases, and ask for a second opinion when unsure.","Conflicts of Interest|Never act against someone for reporting or criticising you; if you are involved, let another moderator handle it.","Confidentiality|Keep staff discussions, reports and records private, but never promise secrecy if a matter must be escalated.","Conduct|Stay calm and professional, and never intimidate, insult or humiliate members.","Integrity|Handle reports in a reasonable time, pass on what you cannot handle, and never claim to have seen evidence you have not.","Complaints|Anyone may report staff, including the owner; complaints are judged on evidence, not rank, and honest reports are never punished.","Accountability|Accept feedback, own your mistakes, and revisit decisions when new evidence appears.","Consequences|Misconduct may lead to a warning, loss of permissions or removal from staff, and serious abuse may mean immediate removal."];
+var EMB=/[?&]embed=1/.test(location.search);
+if(EMB){document.documentElement.classList.add('embed');var cb=document.getElementById('closeBtn');cb.hidden=false;cb.onclick=function(){parent.postMessage({wmHandbook:'close'},location.origin)}}
+var cur=0,tab=Object.keys(PRESETS)[0],$=function(i){return document.getElementById(i)};
+var side=$('side'),scrim=$('scrim');
+side.innerHTML=P.map(function(p,i){return '<button type="button" data-i="'+i+'"><b>'+(i+1)+'</b>'+p.t+'</button>'}).join('');
+function toggle(o){side.classList.toggle('open',o);scrim.classList.toggle('open',o)}
+$('menuBtn').onclick=function(){toggle(!side.classList.contains('open'))};
+scrim.onclick=function(){toggle(false)};
+side.onclick=function(e){var b=e.target.closest('button');if(b){go(+b.dataset.i);toggle(false)}};
+function toast(){var t=$('toast');t.classList.add('show');setTimeout(function(){t.classList.remove('show')},1200)}
+function copy(s){if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(s).then(toast,fb)}else fb();function fb(){var a=document.createElement('textarea');a.value=s;document.body.appendChild(a);a.select();try{document.execCommand('copy');toast()}catch(e){}a.remove()}}
+function presets(){
+  $('tabs').innerHTML=Object.keys(PRESETS).map(function(k){return '<button type="button" data-k="'+k+'" class="'+(k===tab?'on':'')+'">'+k+'</button>'}).join('');
+  $('pl').innerHTML=PRESETS[tab].map(function(x,i){return '<div class="pre"><strong>'+x[0]+'</strong><p>'+x[1]+'</p><button type="button" data-c="'+i+'">Copy</button></div>'}).join('');
+}
+function go(i){
+  cur=Math.max(0,Math.min(P.length-1,i));var p=P[cur];
+  $('main').innerHTML='<div class="pg">Page '+(cur+1)+' of '+P.length+'</div><h1>'+p.t+'</h1>'+p.h;
+  if(EMB)[].forEach.call(document.querySelectorAll('main a'),function(a){a.target='_blank';a.rel='noopener'});
+  if(p.id==='rules')$('rl').innerHTML=R.map(function(r,i){var a=r.split('|');return '<div class="rule"><i>'+(i+1)+'</i><div><b>'+a[0]+'</b><br><span style="color:var(--muted)">'+a[1]+'</span></div></div>'}).join('');
+  if(p.id==='presets'){presets();
+    $('tabs').onclick=function(e){var b=e.target.closest('button');if(b){tab=b.dataset.k;presets()}};
+    $('pl').onclick=function(e){var b=e.target.closest('button');if(b)copy(PRESETS[tab][+b.dataset.c][1])};}
+  [].forEach.call(side.children,function(b,j){b.classList.toggle('on',j===cur)});
+  $('prev').disabled=cur===0;$('next').disabled=cur===P.length-1;$('cnt').textContent=(cur+1)+' / '+P.length;
+  if(location.hash!=='#'+p.id)history.replaceState(null,'','#'+p.id);
+  window.scrollTo(0,0);
+}
+$('prev').onclick=function(){go(cur-1)};$('next').onclick=function(){go(cur+1)};
+var h=location.hash.slice(1),s=P.findIndex(function(p){return p.id===h});go(s<0?0:s);
+</script>
+</body>
+</html>
